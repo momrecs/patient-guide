@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Sky Smile Guide — Big Sky Orthodontics</title>
+<meta name="description" content="The Big Sky Orthodontics patient hub: appliance care, troubleshooting, food lists, elastics, cleaning — and how to text us a photo when something feels off.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   GUIDE HOUSE STYLE — design tokens
+   Do not change these values. They are the identity of the look.
+   ============================================================ */
+:root{
+  --cream:#fef4f0;
+  --warm-white:#fff8f5;
+  --ink:#2d2320;
+  --ink-light:#6b5c57;
+  --ink-muted:#a08c86;
+
+  --sage:#7dab7f;      --sage-light:#dff2e1;   --sage-dark:#2e6e34;
+  --blush:#f0a99a;     --blush-light:#fde6e2;  --blush-dark:#c04535;
+  --butter:#f9c74f;    --butter-light:#fef4cc; --butter-dark:#7a5500;
+  --peach:#f4845f;     --peach-light:#feeae2;  --peach-dark:#b84520;
+  --lilac:#c9a8e8;     --lilac-light:#f0e8fc;  --lilac-dark:#6030a0;
+  --rose:#e9768a;      --rose-light:#fde0e6;   --rose-dark:#9a1f35;
+  --sky:#79bdd4;       --sky-light:#dff1f9;    --sky-dark:#1d6480;
+  --mint:#6ecfb5;      --mint-light:#dcf7f0;   --mint-dark:#1a7a60;
+
+  --border:#f0e0d8;
+  --border-strong:#d9c4bb;
+  --radius:14px;
+  --radius-sm:9px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:'Nunito Sans',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.6;
+  font-size:15px;
+}
+a{color:var(--sage-dark);text-decoration:underline;text-decoration-color:var(--sage);text-underline-offset:2px}
+a:hover{color:var(--sage-dark);text-decoration-color:var(--sage-dark)}
+
+/* ---------- HERO ---------- */
+.hero{
+  background:linear-gradient(135deg,#fce8e0 0%,#fde8d0 35%,#f8e0ee 70%,#e8e0f8 100%);
+  color:var(--ink);padding:4rem 2rem 3rem;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 10% 60%,rgba(201,168,232,.3) 0%,transparent 55%),
+    radial-gradient(circle at 90% 15%,rgba(249,199,79,.2) 0%,transparent 50%),
+    radial-gradient(circle at 55% 95%,rgba(240,169,154,.25) 0%,transparent 45%);
+}
+.hero-emoji{font-size:52px;margin-bottom:1rem;display:block;position:relative}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.15;margin-bottom:1rem;position:relative}
+.hero h1 em{font-style:italic;color:var(--rose-dark)}
+.hero-sub{font-size:16px;color:var(--ink-light);max-width:520px;margin:0 auto 1.5rem;position:relative;font-style:italic}
+.hero-badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative}
+.badge{background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);border-radius:999px;padding:6px 16px;font-size:13px;color:var(--ink)}
+.badge.adhd{background:var(--rose-light);border-color:var(--rose);color:var(--rose-dark);font-weight:600;text-decoration:none}
+
+/* ---------- PAGE + SECTIONS ---------- */
+.page{max-width:820px;margin:0 auto;padding:0 1.5rem 4rem}
+.section{margin-top:3rem;padding-top:2.5rem;border-top:1px solid var(--border)}
+.section-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:.4rem}
+.section h2{font-family:'Fraunces',serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;line-height:1.2;margin-bottom:.4rem}
+.section h3{font-size:15px;font-weight:700;margin:1.5rem 0 .5rem}
+.section-desc{color:var(--ink-light);font-size:14.5px;margin-bottom:1.5rem;max-width:600px;line-height:1.6}
+.section p+p{margin-top:.75rem}
+.body-text{font-size:14px;line-height:1.7;margin-bottom:1.25rem}
+
+/* ---------- QUIP (the signature aside) ---------- */
+.quip{
+  font-size:15px;font-style:italic;font-weight:600;color:var(--rose-dark);
+  background:var(--rose-light);border:2px solid var(--rose);border-radius:var(--radius);
+  margin:.75rem 0 1.5rem;padding:1rem 1.2rem;line-height:1.7;
+}
+.quip::before{content:'💅 '}
+
+/* ---------- JUMP NAV ---------- */
+.jump-nav{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:2rem;margin-top:2rem}
+.jump-nav-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem;background:none;border:none;cursor:pointer;font-family:'Nunito Sans',sans-serif}
+.jump-nav-toggle-left{display:flex;align-items:center;gap:.5rem}
+.jump-nav-toggle-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-muted)}
+.jump-nav-toggle-hint{font-size:12px;color:var(--ink-light);font-weight:400}
+.jump-nav-arrow{font-size:12px;color:var(--ink-muted);transition:transform .2s}
+.jump-nav.open .jump-nav-arrow{transform:rotate(180deg)}
+.jump-nav-body{display:none;padding:0 1.5rem 1.25rem;border-top:1px solid var(--border);padding-top:1rem}
+.jump-nav.open .jump-nav-body{display:block}
+.jump-nav-links{display:flex;flex-wrap:wrap;gap:8px}
+.jump-nav-links a{font-size:12.5px;font-weight:500;color:var(--ink);text-decoration:none;background:var(--cream);border:1px solid var(--border-strong);border-radius:999px;padding:4px 14px;transition:all .15s;white-space:nowrap}
+.jump-nav-links a:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+
+/* ---------- RULE CARDS (do / don't) ---------- */
+.rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.rule-card{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;display:flex;gap:12px;align-items:flex-start}
+.rule-card.do{border-left:3px solid var(--sage)}
+.rule-card.dont{border-left:3px solid var(--blush-dark)}
+.rule-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+.rule-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.do .rule-tag{color:var(--sage-dark)}
+.dont .rule-tag{color:var(--blush-dark)}
+.rule-card p{font-size:13px;line-height:1.5}
+
+/* ---------- CALLOUTS ---------- */
+.callout{border-radius:var(--radius);padding:1rem 1.25rem;font-size:14px;font-weight:500;line-height:1.7;margin-bottom:1.25rem}
+.callout strong{font-weight:700}
+.callout-info{background:var(--lilac-light);border:2px solid var(--lilac);color:var(--lilac-dark)}
+.callout-key{background:var(--butter-light);border:2px solid var(--butter);color:var(--butter-dark);font-size:14.5px}
+.callout-warn{background:var(--blush-light);border:2px solid var(--blush);color:var(--blush-dark)}
+.callout-tip{background:var(--mint-light);border:1.5px solid var(--mint);color:var(--mint-dark);font-size:13.5px;line-height:1.6}
+.callout-note{background:var(--peach-light);border:1.5px solid var(--peach);color:var(--peach-dark);font-size:13.5px;line-height:1.6}
+.callout-soft{background:var(--lilac-light);border:1.5px solid var(--lilac);color:var(--lilac-dark);font-size:13.5px;font-weight:600;line-height:1.6}
+.callout-plain{background:var(--warm-white);border:1px solid var(--border);color:var(--ink);font-size:13.5px;font-weight:400;line-height:1.7}
+.callout-plain p+p{margin-top:.6rem}
+.callout-inline{background:var(--peach-light);border:1px solid var(--peach);border-radius:var(--radius-sm);padding:7px 11px;font-size:12.5px;color:var(--peach-dark);font-weight:500;line-height:1.5;margin-top:.85rem}
+
+/* ---------- DARK EMPHASIS BOX ---------- */
+.dark-box{background:var(--ink);color:var(--cream);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-top:1.5rem}
+.dark-box h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;margin:0 0 .5rem;color:var(--blush)}
+.dark-box p{font-size:13px;line-height:1.7;color:rgba(253,248,242,.88)}
+.dark-box p+p{margin-top:.6rem}
+.dark-box strong{color:var(--cream)}
+
+/* ---------- CARD GRIDS ---------- */
+.card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card-grid-auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px}
+.card{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem}
+.card h3,.card h4{font-size:14px;font-weight:600;margin-bottom:6px}
+.card p{font-size:13px;color:var(--ink);line-height:1.6}
+.card .icon{font-size:22px;margin-bottom:6px;display:block}
+.card-tip{margin-top:10px;font-size:13px;font-weight:600;background:var(--peach-light);color:var(--peach-dark);border:1.5px solid var(--peach);border-radius:var(--radius-sm);padding:8px 11px;line-height:1.5}
+
+/* ---------- PICK CARDS (recommendations, with badge) ---------- */
+.pick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:10px;margin-bottom:1.25rem}
+.pick-card{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem 1rem}
+.pick-card.pick{border-color:var(--sage);background:var(--sage-light)}
+.pick-badge{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--sage-dark);color:#fff;border-radius:4px;padding:1px 7px;margin-bottom:5px}
+.pick-name{font-size:13px;font-weight:700;margin-bottom:3px}
+.pick-card.pick .pick-name{color:var(--sage-dark)}
+.pick-meta{font-size:11px;font-weight:600;color:var(--ink-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.pick-card p{font-size:12.5px;line-height:1.5;color:var(--ink-light)}
+.pick-card strong{color:var(--ink);font-weight:600}
+
+/* ---------- TERM CARDS (definitions / categories) ---------- */
+.term-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px}
+.term-card{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:.85rem 1rem}
+.term-card.star{border-color:var(--sky);background:var(--sky-light)}
+.term-name{font-size:13px;font-weight:600;margin-bottom:2px}
+.term-card.star .term-name{color:var(--sky-dark)}
+.term-type{font-size:12px;color:var(--lilac-dark);font-weight:600;margin-bottom:5px}
+.term-body{font-size:13px;line-height:1.5}
+.term-warn{display:inline-block;margin-top:7px;font-size:12px;font-weight:600;background:var(--blush-light);color:var(--blush-dark);border:1px solid var(--blush);border-radius:6px;padding:3px 9px}
+
+/* ---------- RANKED LIST ---------- */
+.rank-list{list-style:none}
+.rank-item{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;line-height:1.5}
+.rank-item:last-child{border-bottom:none}
+.rank-star{color:var(--sage-dark);font-size:15px;flex-shrink:0;margin-top:1px}
+.rank-note{display:inline-block;font-size:12.5px;color:var(--peach-dark);font-weight:600;background:var(--peach-light);border-radius:5px;padding:2px 7px;margin-top:4px}
+
+/* ---------- AVOID LIST ---------- */
+.avoid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.avoid-item{background:var(--blush-light);border:1.5px solid var(--blush);border-radius:var(--radius-sm);padding:7px 12px;font-size:13px;font-weight:500;color:var(--blush-dark);display:flex;align-items:center;gap:6px}
+.avoid-item::before{content:'✕';font-weight:700;font-size:11px}
+
+/* ---------- WARN BOX WITH CHECKLIST ---------- */
+.warn-box{background:var(--blush-light);border:2px solid var(--blush);border-radius:var(--radius);padding:1rem 1.25rem;margin-top:1.25rem}
+.warn-box h4{font-size:13px;font-weight:700;color:var(--blush-dark);margin-bottom:.6rem}
+.warn-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.warn-item{font-size:12.5px;line-height:1.4;display:flex;gap:7px;align-items:flex-start;color:var(--blush-dark)}
+.warn-item::before{content:'⚠';font-size:12px;flex-shrink:0;margin-top:1px}
+
+/* ---------- COMPARE / MYTH CARDS ---------- */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare-card{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.2rem}
+.compare-card h3{font-size:14px;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.compare-card p{font-size:13px;line-height:1.6}
+.tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:2px 7px;border-radius:4px}
+.tag-good{background:var(--sage-light);color:var(--sage-dark)}
+.tag-neutral{background:var(--sky-light);color:var(--sky-dark)}
+.tag-bad{background:var(--blush-light);color:var(--blush-dark)}
+
+/* ---------- FLOW PILLS ---------- */
+.flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.flow-step{background:var(--warm-white);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500}
+.flow-step.highlight{background:var(--sage-light);border-color:var(--sage);color:var(--sage-dark)}
+.flow-step.done{background:var(--sky-light);border-color:var(--sky);color:var(--sky-dark)}
+.flow-arrow{color:var(--ink-muted);font-size:16px}
+
+/* ---------- SPECTRUM / SCALE ---------- */
+.spectrum{height:14px;border-radius:999px;background:linear-gradient(to right,#9FE1CB,#FAC775,#F0997B,#E24B4A);margin-bottom:8px}
+.spectrum-ticks{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-muted);margin-bottom:1.25rem}
+.level-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.level{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem;font-size:13px}
+.level-name{font-weight:600;margin-bottom:2px;font-size:13px}
+.level-range{font-size:11px;color:var(--ink-muted);margin-bottom:6px}
+.level-action{font-size:12px;line-height:1.5}
+.level-1 .level-name{color:var(--sage-dark)}
+.level-2 .level-name{color:var(--butter-dark)}
+.level-3 .level-name{color:#c05e30}
+.level-4 .level-name{color:var(--blush-dark)}
+
+.scale-wrap{margin-bottom:1.25rem}
+.scale-bar{height:18px;border-radius:999px;background:linear-gradient(to right,#e24b4a,#f0997b,#fac775,#9fe1cb,#6ecfb5,#79bdd4,#7b9fd4);margin-bottom:6px;position:relative}
+.scale-marker{position:absolute;top:-6px;width:3px;height:30px;background:var(--ink);border-radius:2px}
+.scale-marker-label{position:absolute;top:28px;transform:translateX(-50%);font-size:10px;font-weight:700;color:var(--ink);white-space:nowrap}
+.scale-ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--ink-muted);margin-top:8px}
+.zone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:1.25rem}
+.zone{border-radius:var(--radius);padding:.85rem 1rem;font-size:13px}
+.zone h4{font-size:13px;font-weight:700;margin-bottom:4px}
+.zone p{font-size:12.5px;line-height:1.5;color:var(--ink-light)}
+.zone strong{color:var(--ink);font-weight:600}
+.zone-a{background:#fde8e2;border:1px solid #f0997b}
+.zone-a h4{color:var(--blush-dark)}
+.zone-b{background:var(--butter-light);border:1px solid var(--butter)}
+.zone-b h4{color:var(--butter-dark)}
+.zone-c{background:var(--sky-light);border:1px solid var(--sky)}
+.zone-c h4{color:var(--sky-dark)}
+
+/* ---------- TABS ---------- */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
+.tab{padding:6px 16px;border-radius:999px;font-size:13px;border:1px solid var(--border-strong);background:transparent;color:var(--ink-light);cursor:pointer;font-family:'Nunito Sans',sans-serif;font-weight:500;transition:all .15s}
+.tab:hover{background:var(--warm-white);color:var(--ink)}
+.tab.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.tabs-alt .tab{font-weight:600;padding:6px 18px}
+.tabs-alt .tab:hover{background:var(--sage-light);color:var(--sage-dark);border-color:var(--sage)}
+.tabs-alt .tab.active{background:var(--sage-dark);color:#fff;border-color:var(--sage-dark)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.panel-inner{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.25rem}
+.pill{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:2px 8px;border-radius:4px;margin-bottom:.75rem}
+.pill-urgent{background:var(--blush-light);color:var(--blush-dark)}
+.pill-normal{background:var(--butter-light);color:var(--butter-dark)}
+.pill-calm{background:var(--sage-light);color:var(--sage-dark)}
+
+/* ---------- STEPS ---------- */
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:flex;gap:14px;align-items:flex-start;background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
+.step-num{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}
+.step-num.gradient{background:linear-gradient(135deg,var(--sage) 0%,var(--mint) 100%);color:#fff;font-weight:700;font-size:12px}
+.step-num.gradient-alt{background:linear-gradient(135deg,var(--lilac) 0%,var(--rose) 100%);color:#fff;font-weight:700;font-size:12px}
+.step p{font-size:13px;line-height:1.6;padding-top:4px}
+.step strong{font-weight:600}
+
+.ministeps{display:flex;flex-direction:column;gap:8px;margin-top:.75rem}
+.ministep{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.6}
+.ministep-num{width:22px;height:22px;border-radius:50%;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* ---------- HIGHLIGHT STEPS (tinted, icon-led) ---------- */
+.hl-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem}
+.hl-step{display:flex;gap:12px;align-items:flex-start;background:var(--sky-light);border:1.5px solid var(--sky);border-radius:var(--radius);padding:.9rem 1rem;font-size:13px;line-height:1.6}
+.hl-step-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.hl-step strong{font-weight:600}
+
+/* ---------- SPEC / RECIPE TABLES ---------- */
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:1.5rem}
+.spec-card{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.spec-card.narrow{max-width:400px}
+.spec-head{background:var(--ink);color:var(--cream);padding:.7rem 1rem;font-size:13px;font-weight:600}
+.spec-card.accent .spec-head{background:var(--sage);color:#fff;padding:.6rem 1rem}
+.spec-row{display:flex;justify-content:space-between;align-items:center;padding:.55rem 1rem;border-bottom:1px solid var(--border);font-size:13px;gap:1rem}
+.spec-row:last-child{border-bottom:none}
+.spec-row span:first-child{color:var(--ink-light)}
+.spec-row span:last-child{font-weight:500;text-align:right}
+
+/* ---------- FEATURE HEADER + CHECKLIST ---------- */
+.feature-header{background:linear-gradient(135deg,var(--lilac-light) 0%,var(--blush-light) 50%,var(--butter-light) 100%);border:2px solid var(--lilac);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.feature-header p{font-size:13.5px;color:var(--lilac-dark);line-height:1.6}
+.checklist{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.5rem}
+.checklist h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-muted);margin:0 0 .75rem}
+.checklist-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.checklist-item{font-size:13px;display:flex;gap:8px;align-items:flex-start;line-height:1.4}
+.checklist-item::before{content:'▪';font-size:13px;flex-shrink:0;color:var(--sage-dark)}
+.checklist-item.optional::before{content:'✨'}
+
+/* ---------- TLDR ---------- */
+.tldr{background:var(--ink);color:var(--cream);border-radius:var(--radius);padding:2rem;margin-top:3rem}
+.tldr h2{font-family:'Fraunces',serif;font-size:1.5rem;margin-bottom:.25rem;color:var(--cream)}
+.tldr-sub{font-size:13px;color:rgba(253,248,242,.6);margin-bottom:1.25rem}
+.tldr-steps{list-style:none;display:flex;flex-direction:column;gap:10px}
+.tldr-step{display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.5;color:rgba(253,248,242,.88)}
+.tldr-num{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;color:var(--cream)}
+.tldr-step strong{color:var(--cream);font-weight:600}
+
+/* ---------- RESOURCES ---------- */
+.resources{margin-top:3rem;padding-top:2.5rem;border-top:3px solid var(--border)}
+.resources h2{font-family:'Fraunces',serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;margin-bottom:.4rem}
+.resources .sub{font-size:13px;color:var(--ink-muted);margin-bottom:1.5rem}
+.resource-group{margin-bottom:1.75rem}
+.resource-group h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-muted);margin-bottom:.75rem;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.resource-links{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.resource-item{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px 12px;font-size:13px}
+.resource-item a{color:var(--sage-dark);font-weight:500;text-decoration:none;display:flex;align-items:center;gap:6px}
+.resource-item a:hover{text-decoration:underline}
+.resource-item a::before{content:'→';font-size:12px;color:var(--sage);flex-shrink:0}
+
+/* ---------- OUTRO ---------- */
+.outro{background:linear-gradient(135deg,#fce8e0 0%,#f8e0ee 50%,#e8e8f8 100%);border-radius:var(--radius);padding:2rem;margin-top:2rem;text-align:center}
+.outro p{font-size:14px;color:var(--ink-light);line-height:1.7;max-width:520px;margin:0 auto}
+.outro p+p{margin-top:.75rem}
+.outro p strong{color:var(--ink)}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:600px){
+  .card-grid-3{grid-template-columns:1fr}
+  .level-grid{grid-template-columns:1fr 1fr}
+  .spec-grid{grid-template-columns:1fr}
+  .card-grid-2{grid-template-columns:1fr}
+  .compare-grid{grid-template-columns:1fr}
+  .zone-grid{grid-template-columns:1fr}
+  .warn-grid{grid-template-columns:1fr}
+  .checklist-grid{grid-template-columns:1fr}
+  .hero{padding:3rem 1.25rem 2.5rem}
+}
+
+/* ---------- PRINT ---------- */
+@media print{
+  .jump-nav,.tabs{display:none}
+  .tab-panel{display:block!important}
+  body{background:#fff}
+  .section{page-break-inside:avoid}
+}
+
+/* ---------- COLLAPSIBLE SECTIONS ---------- */
+.section.collapsible > h2{cursor:pointer;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.section.collapsible > h2::after{content:'\25BE';font-size:15px;color:var(--ink-muted);transition:transform .2s;font-family:'Nunito Sans',sans-serif;flex-shrink:0}
+.section.collapsible.collapsed > h2::after{transform:rotate(-90deg)}
+.section.collapsible.collapsed .section-body{display:none}
+.section.collapsible.collapsed{padding-bottom:.25rem}
+@media print{ .section.collapsible.collapsed .section-body{display:block!important} .section.collapsible > h2::after{content:''} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="hero-emoji">🦷</span>
+  <h1>A Big Sky Guide to<br><em>Actually Happy</em> Teeth</h1>
+  <p class="hero-sub">Every appliance, every "is this normal?", and every what-can-I-eat — explained by the people who put the braces on.</p>
+  <div class="hero-badges">
+    <span class="badge">🛠️ Every appliance</span>
+    <a href="#help" class="badge" style="text-decoration:none;cursor:pointer">🆘 Quick fixes</a>
+    <span class="badge">🍎 What to eat</span>
+    <a href="#tldr" class="badge adhd">✦ In a hurry? Skip to the TLDR →</a>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- JUMP NAV -->
+  <nav class="jump-nav" id="jumpNav">
+    <button class="jump-nav-toggle" onclick="document.getElementById('jumpNav').classList.toggle('open')">
+      <span class="jump-nav-toggle-left">
+        <span class="jump-nav-toggle-label">Jump to</span>
+        <span class="jump-nav-toggle-hint">tap to open the full list</span>
+      </span>
+      <span class="jump-nav-arrow">▼</span>
+    </button>
+    <div class="jump-nav-body">
+      <div class="jump-nav-links">
+        <a href="#start">Ground Rules</a>
+        <a href="#appliances">My Appliance</a>
+        <a href="#eat">What Can I Eat?</a>
+        <a href="#elastics">Elastics</a>
+        <a href="#brushing">Brushing &amp; Flossing</a>
+        <a href="#cleanremovable">Cleaning Retainers &amp; Aligners</a>
+        <a href="#cleanfixed">Fixed Appliances</a>
+        <a href="#help">Something's Bothering Me 🆘</a>
+        <a href="#contact">Contact Us</a>
+        <a href="#tldr">TLDR</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- GROUND RULES -->
+  <section class="section collapsible" id="start">
+    <div class="section-label">Before we begin</div>
+    <h2>🧭 Ground rules</h2>
+    <div class="section-body">
+    <p class="section-desc">Treatment length isn't luck. It comes down to three habits — and one phone number for everything else.</p>
+
+    <div class="rules-grid">
+      <div class="rule-card do">
+        <span class="rule-icon">🪢</span>
+        <div>
+          <div class="rule-tag">Do</div>
+          <p><strong>Wear your elastics as prescribed.</strong> Every skipped month of elastics adds a month of treatment.</p>
+        </div>
+      </div>
+      <div class="rule-card do">
+        <span class="rule-icon">🪥</span>
+        <div>
+          <div class="rule-tag">Do</div>
+          <p><strong>Keep your teeth clean.</strong> Teeth don't move well through inflamed gums — and white marks are permanent.</p>
+        </div>
+      </div>
+      <div class="rule-card dont">
+        <span class="rule-icon">🍬</span>
+        <div>
+          <div class="rule-tag">Don't</div>
+          <p><strong>Eat hard or sticky things.</strong> Each broken bracket adds about 6 weeks. Full list in <a href="#eat">What can I eat?</a></p>
+        </div>
+      </div>
+      <div class="rule-card dont">
+        <span class="rule-icon">🤐</span>
+        <div>
+          <div class="rule-tag">Don't</div>
+          <p><strong>Sit on a problem.</strong> Loose bracket? Poking wire? Tell us early — small fixes stay small.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-key" style="margin-top:1.25rem"><strong>Something feel wrong?</strong> Text us a photo at <strong>1-888-844-9093</strong> with your name. We'll reply within 1–2 business days — usually much sooner.</div>
+
+    <p class="quip">Yes, we will ask if you've been wearing your elastics. Yes, we can tell. The teeth keep receipts.</p>
+  </div>
+  </section>
+
+  
+  
+  <!-- MY APPLIANCE -->
+  <section class="section collapsible collapsed" id="appliances">
+    <div class="section-label">The owner's manual</div>
+    <h2>🛠️ My appliance</h2>
+    <div class="section-body">
+    <p class="section-desc">Tap yours. Every guide covers the same three things: what it does, what to expect, and your part in making it work.</p>
+
+    <div class="tab-group">
+      <div class="tabs">
+        <button class="tab active" data-panel="a-braces">😁 Braces</button>
+        <button class="tab" data-panel="a-invis">🫥 Clear Aligners</button>
+        <button class="tab" data-panel="a-hyrax">🗝️ Expander</button>
+        <button class="tab" data-panel="a-twinblock">🧱 Twin Block</button>
+        <button class="tab" data-panel="a-headgear">🎯 Headgear</button>
+        <button class="tab" data-panel="a-forsus">🌀 Forsus</button>
+        <button class="tab" data-panel="a-powerbar">⚡ Power Bar</button>
+        <button class="tab" data-panel="a-casper">👻 Casper</button>
+        <button class="tab" data-panel="a-ramps">🔷 Bite Ramps</button>
+        <button class="tab" data-panel="a-nance">🌉 Nance</button>
+        <button class="tab" data-panel="a-spacer">🪜 Space Maintainer</button>
+        <button class="tab" data-panel="a-crib">🚪 Crib</button>
+        <button class="tab" data-panel="a-seps">🍩 Separators</button>
+        <button class="tab" data-panel="a-retainer">🌙 Removable Retainers</button>
+        <button class="tab" data-panel="a-bonded">📎 Bonded Wire</button>
+        <button class="tab" data-panel="a-mouthguard">🏒 Mouthguard</button>
+      </div>
+
+      <div class="tab-panel active" id="a-braces">
+        <div class="panel-inner">
+          <span class="pill pill-calm">The classic</span>
+          <p><strong>Your part in getting them off on time comes down to three things:</strong> wear your elastics as prescribed, keep your teeth clean, and protect your brackets from hard and sticky foods.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span><strong>The first week:</strong> sore teeth are normal (again for a day or two after adjustments) — it means your teeth are moving. Eat a good meal on bonding day before the soreness sets in, go soft for a few days, and use your usual pain reliever if you need it.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span><strong>Cheeks and lips</strong> need a week or two to toughen up. Dry any rough spot and cover it with wax; rinse small sores with warm salt water before bed.</span></div>
+            <div class="ministep"><span class="ministep-num">3</span><span><strong>Ongoing:</strong> appointments run roughly every 4–12 weeks depending on the stage. Check for loose brackets when you brush — found one? See <a href="#help">Something's bothering me</a>.</span></div>
+          </div>
+          <div class="callout-inline">A broken bracket that goes unreported can add about 6 weeks to your treatment — tell us early.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-invis">
+        <div class="panel-inner">
+          <span class="pill pill-normal">22 hours a day</span>
+          <p><strong>They only work while they're in.</strong> Out for meals and brushing, in for everything else — including sleep.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span>New tray snug and tender for a day or two? Normal — that's the tray working.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span><strong>Attachments</strong> (small tooth-coloured bumps) help your aligners grip. One pops off? Keep wearing your trays and text us — not an emergency.</span></div>
+            <div class="ministep"><span class="ministep-num">3</span><span>Only <strong>cool water</strong> while aligners are in. Brush (or at least rinse) before they go back in after eating.</span></div>
+            <div class="ministep"><span class="ministep-num">4</span><span>Keep your <strong>previous tray</strong> as a backup until you're two trays past it. Done with old trays? <strong>Bring them in — we recycle them.</strong></span></div>
+          </div>
+          <div class="callout-inline">Cleaning: cool water, soft brush, mild soap — see <a href="#cleanremovable">Cleaning retainers &amp; aligners</a>. Case, always; dogs, never.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-hyrax">
+        <div class="panel-inner">
+          <span class="pill pill-normal">Turn as directed</span>
+          <p><strong>What it does:</strong> gently widens the upper jaw by encouraging the two halves of the palate to grow apart at the seam — moving the bones while they're still adaptable, not just tipping the teeth.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span><strong>Pressure under the eyes or around the nose</strong> when it's turned — normal.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span><strong>A gap opening between the front teeth</strong> — a good sign! It means the expander is working, and it closes on its own after we stop turning.</span></div>
+            <div class="ministep"><span class="ministep-num">3</span><span>Bulky feeling, extra saliva, funny speech — most patients adapt within <strong>7–10 days</strong>.</span></div>
+          </div>
+          <p style="margin-top:.75rem"><strong>Your part:</strong> turn the key exactly as we've shown you — once a day, front to back, unless we've told you otherwise. Loose, stuck, or turned wrong? Stop and text us.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-twinblock">
+        <div class="panel-inner">
+          <span class="pill pill-normal">24 hours a day</span>
+          <p><strong>What it does:</strong> two removable acrylic plates with bite pads that guide your lower jaw forward as you bite — encouraging the lower jaw to grow forward while gently holding back the upper, improving the bite and reducing the overbite.</p>
+          <p><strong>Your part:</strong> it's a <em>functional</em> appliance — it only works while you're functioning in it. Wear it all day and night, out only for eating and cleaning. Bring <strong>both pieces</strong> to every appointment. Clean after every meal with a soft brush, cool water, and mild soap — never hot water. Has an expansion screw? Turn it only as directed.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-headgear">
+        <div class="panel-inner">
+          <span class="pill pill-normal">12–16 hours a day</span>
+          <p><strong>What it does:</strong> holds back growth in one jaw while the other catches up. Growth takes time, so expect an extended stretch of wear while we monitor progress.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span>Evenings, nights, and weekends do the job — <strong>school wear isn't required</strong>. It's fine to work up to full hours over the first 4–5 days.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span><strong>Extra hours only help.</strong> Weekends are perfect for catching up.</span></div>
+            <div class="ministep"><span class="ministep-num">3</span><span>Don't wear it for sports or in very cold weather.</span></div>
+            <div class="ministep"><span class="ministep-num">4</span><span>Keep your <strong>scorecard</strong> going, and bring it — and the headgear — to every appointment.</span></div>
+          </div>
+          <div class="callout-inline">Breakage, loose band, or lost part? Text us right away and bring the headgear to the repair visit.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-forsus">
+        <div class="panel-inner">
+          <span class="pill pill-calm">Works around the clock</span>
+          <p><strong>What it does:</strong> a spring-and-rod appliance attached to your braces, moving your upper molars back and your lower arch forward — bite correction without rubber-band duty.</p>
+          <p><strong>What to expect:</strong> some pressure and tenderness at first (soft foods for a few days help), and possibly some cheek rubbing — use the wax or silicone we've given you.</p>
+          <p><strong>Your part:</strong> brush the coil and rod whenever you brush your teeth, and avoid opening extra-wide, which can pop the two parts apart. If it comes apart or breaks, text us a photo.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-powerbar">
+        <div class="panel-inner">
+          <span class="pill pill-normal">~22 hours a day</span>
+          <p><strong>What it does:</strong> a bonded bite corrector that works with elastics and a retainer. The elastics do the heavy lifting — so wear time is everything.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span>Wear your <strong>retainer and elastics together, about 22 hours a day</strong>. Out for eating (retainer straight into its case), back in right after.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span>Change your elastics <strong>every 3–4 hours</strong> — they lose strength faster than you'd think.</span></div>
+            <div class="ministep"><span class="ministep-num">3</span><span>Keep the hooks and retainer clean: soft brush, proxabrush around the hooks, floss threaders, Waterpik if you have one.</span></div>
+            <div class="ministep"><span class="ministep-num">4</span><span>Wax and warm salt-water rinses get you through the toughening-up phase. No hard or sticky foods.</span></div>
+          </div>
+          <div class="callout-inline">Trouble hooking your elastics, or something feels loose? Text us.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-casper">
+        <div class="panel-inner">
+          <span class="pill pill-calm">No rubber bands to remember</span>
+          <p><strong>What it does:</strong> a fixed, custom-made bite corrector bonded to your back teeth that guides your lower jaw forward. Sturdy metal, sits far back where it's barely noticeable, and works <strong>all the time</strong> — nothing to take in and out.</p>
+          <p><strong>What to expect:</strong> a few days of adjustment while chewing and speech get used to it. Some cheek irritation is common at first — dry the spot and cover the appliance with wax, and rinse with warm salt water if a small sore develops. Cheeks toughen up within a week or two. Because it works around the clock, treatment moves along whether you think about it or not (that's the point!).</p>
+          <p><strong>Your part:</strong> brush around it like any fixed appliance, avoid hard and sticky foods, and text us a photo if anything comes loose or breaks.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-ramps">
+        <div class="panel-inner">
+          <span class="pill pill-calm">3–12 months</span>
+          <p><strong>What they do:</strong> small bonded blocks behind your upper front teeth (usually blue, so they're easy to remove later — and no, they don't show when you smile). They open a deep bite, protecting your enamel and lower braces from biting pressure — which actually speeds treatment along.</p>
+          <p><strong>What to expect:</strong> eating feels strange for the first 7–10 days. Softer foods cut into pieces are your friend, and it steadily improves as your back teeth come together.</p>
+          <div class="callout-inline">One ramp came off? With two you can carry on comfortably — mention it at your next visit. If it was your only one, text us to book a replacement.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-nance">
+        <div class="panel-inner">
+          <span class="pill pill-calm">Quiet worker</span>
+          <p><strong>What it does:</strong> stops the upper molars from drifting forward — two bands on the molars connected by a wire across the roof of the mouth, anchored by a small acrylic pad.</p>
+          <p><strong>Your part:</strong> brush well around the bands and the pad, skip sticky and chewy candy, and text us if anything feels loose.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-spacer">
+        <div class="panel-inner">
+          <span class="pill pill-calm">6–12 months</span>
+          <p><strong>What it does:</strong> holds space exactly where it is while you wait for adult teeth to come in — typically 6–12 months, sometimes longer. Some versions include small <strong>spurs</strong> resting on the gum beside the front teeth to keep those from shifting too.</p>
+          <p><strong>Your part:</strong> brush around the bands, avoid sticky and chewy candy, and text us if it comes loose.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-crib">
+        <div class="panel-inner">
+          <span class="pill pill-calm">Usually about a year</span>
+          <p><strong>What it does:</strong> a small "gate" of wires behind the upper front teeth. Depending on why you have one, it either helps <strong>retrain the tongue</strong> to rest in the right place so the front teeth can come in properly, or acts as a gentle <strong>reminder to break a thumb habit</strong>.</p>
+          <p><strong>Your part:</strong> if yours is for tongue training, practice keeping your tongue behind the gate — especially when swallowing. Either way: no sticky, hard, or chewy foods, brush after meals, floss daily, and text us if it loosens.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-seps">
+        <div class="panel-inner">
+          <span class="pill pill-calm">Short-term guests</span>
+          <p><strong>What they do:</strong> tiny elastic "donuts" placed between back teeth to open just enough space to fit bands at your next visit.</p>
+          <p><strong>What to expect:</strong> a something-stuck-between-my-teeth feeling, with achiness starting 4–6 hours after placement and peaking around 24 hours. Taking the pain reliever you'd normally use, per the package directions, about an hour before your appointment makes a real difference.</p>
+          <p><strong>Your part:</strong> brush normally, but <strong>don't floss where the separators sit</strong>. Avoid gum and sticky candy. If one falls out early, text us which one.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-retainer">
+        <div class="panel-inner">
+          <span class="pill pill-urgent">Wear as prescribed</span>
+          <p>Congratulations — the braces are off! Now the retainer keeps your new smile exactly where it belongs. Teeth shift fastest in the first months after braces, and keep shifting slowly for life — <strong>retention is a lifelong habit</strong>.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span><strong>Removing it:</strong> pull down gently and <em>evenly on both sides</em> — clear retainers crack when peeled from one side.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span>Out for eating, sports (including swimming), and brushing. When it's out, it's <strong>in its case</strong> — never a napkin, never a pocket, never within reach of a dog.</span></div>
+            <div class="ministep"><span class="ministep-num">3</span><span>New-retainer quirks (plastic taste, extra saliva, funny speech) fade within 2–3 days. A sore spot lasting more than 3–4 days means it needs an adjustment — text us.</span></div>
+            <div class="ministep"><span class="ministep-num">4</span><span>Don't flip it with your tongue, and keep it away from heat — no hot water, dashboards, or dishwashers.</span></div>
+            <div class="ministep"><span class="ministep-num">5</span><span><strong>Bring it to every appointment</strong> — including dental visits, since fillings and crowns change how it fits.</span></div>
+          </div>
+          <div class="callout-inline">Lost, broken, or not fitting right? Don't wait for your next visit — text us right away. Teeth move fast without it.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-bonded">
+        <div class="panel-inner">
+          <span class="pill pill-calm">The long-haul wire</span>
+          <p><strong>What it does:</strong> a thin wire glued behind your front teeth that quietly holds them straight for the long haul. A tiny bit of settling over time is natural, but with the wire in place and cared for, your teeth stay aligned for as long as it's there.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span>Floss under the wire <strong>daily</strong> with a floss threader or Superfloss, gently up under the gumline. Careful pressure — pushing hard can bend or loosen the wire.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span>Don't pick at it, and steer clear of very hard, sticky, or brittle foods that could bend it.</span></div>
+            <div class="ministep"><span class="ministep-num">3</span><span>Comes loose or off? <strong>Save the wire</strong>, text us, and come in at the first opening — even a brief gap can let teeth shift.</span></div>
+          </div>
+          <div class="callout-inline">Not sure of your flossing technique? Ask at any visit — we're happy to show you.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="a-mouthguard">
+        <div class="panel-inner">
+          <span class="pill pill-calm">Wear it every game</span>
+          <p>Custom-made from an impression of your teeth, so it fits precisely (and comes in your choice of colours). It only protects your teeth when it's <strong>in your mouth</strong> — every practice and every game, not just the big ones.</p>
+          <p>Clean it with a soft brush, mild soap, and warm (never hot) water, and store it in its case.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="quip">Retention is a lifelong relationship. Your retainer is very low-maintenance — but it will absolutely notice if you ghost it.</p>
+  </div>
+  </section>
+
+  
+  <!-- WHAT CAN I EAT -->
+  <section class="section collapsible collapsed" id="eat">
+    <div class="section-label">The fridge-door section</div>
+    <h2>🍎 What can I eat?</h2>
+    <div class="section-body">
+    <p class="section-desc">One rule covers almost everything — and most "forbidden" foods just need a knife first.</p>
+
+    <div class="callout callout-key"><strong>The rule:</strong> if it's <strong>hard</strong>, it can break brackets and bend wires. If it's <strong>sticky</strong>, it can pull appliances loose and feed the bacteria that cause white marks. Everything else is fair game — often just cut into smaller pieces.</div>
+
+    <div class="callout callout-tip"><strong>Aligner patients:</strong> you're the lucky ones — trays come out for meals, so you can eat normally. Just brush before they go back in.</div>
+
+    <div class="avoid-grid">
+      <div class="avoid-item">Whole apples — slice first</div>
+      <div class="avoid-item">Beef jerky</div>
+      <div class="avoid-item">Bubble gum</div>
+      <div class="avoid-item">Caramel, toffee &amp; gummies</div>
+      <div class="avoid-item">Corn on the cob — cut it off</div>
+      <div class="avoid-item">Hard chips &amp; tacos</div>
+      <div class="avoid-item">Hard pretzels &amp; bagels</div>
+      <div class="avoid-item">Ice — never chew it</div>
+      <div class="avoid-item">Nuts — any kind</div>
+      <div class="avoid-item">Pizza crust</div>
+      <div class="avoid-item">Popcorn</div>
+      <div class="avoid-item">Raw carrots — cut small</div>
+      <div class="avoid-item">Ribs &amp; bone-in meat</div>
+      <div class="avoid-item">Suckers &amp; hard candy</div>
+      <div class="avoid-item">Pens &amp; pencils</div>
+    </div>
+
+    <p class="quip">Pens and pencils: the classic exam-time snack. Breaks everything. Chew on your study notes instead — metaphorically.</p>
+
+    <div class="callout callout-note"><strong>Sugar-free gum is fine</strong> — and go easy on sugary snacks and drinks in general. Sugar trapped around braces is how white marks and cavities start.</div>
+    <h3>The soft-food week</h3>
+    <p class="body-text">For the first week — or after any adjustment — think soft. Most patients are back to (braces-friendly) normal within a week.</p>
+    <div class="card-grid-3">
+      <div class="card">
+        <span class="icon">🍳</span>
+        <h3>Breakfast</h3>
+        <p>Oatmeal or cream of wheat, scrambled eggs, yogurt, applesauce, soft fruit, smoothies.</p>
+      </div>
+      <div class="card">
+        <span class="icon">🍝</span>
+        <h3>Lunch &amp; dinner</h3>
+        <p>Pasta, mac and cheese, soups, mashed potatoes, rice and beans, crustless bread, eggs, tofu, fish, lasagna, chili, finely cut chicken or ground beef, soft-cooked veggies.</p>
+      </div>
+      <div class="card">
+        <span class="icon">🍨</span>
+        <h3>Dessert</h3>
+        <p>Ice cream, pudding, Jell-O, anything blended.</p>
+        <div class="card-tip">Yes, ice cream counts as medicine this week.</div>
+      </div>
+    </div>
+
+  </div>
+  </section>
+
+  
+  <!-- ELASTICS -->
+  <section class="section collapsible collapsed" id="elastics">
+    <div class="section-label">The fastest way out of braces</div>
+    <h2>🪢 Elastics (rubber bands)</h2>
+    <div class="section-body">
+    <p class="section-desc">Braces straighten teeth; elastics fix your <em>bite</em>. Worn well, they're your fastest ticket out of braces.</p>
+
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><p><strong>Wear them 24 hours a day</strong> unless we've told you otherwise — teeth only move with constant, steady pressure. Out just for meals and brushing; loop them on a finger so they go straight back in.</p></div>
+      <div class="step"><span class="step-num">2</span><p><strong>Change them 3–4 times a day.</strong> Elastics tire out quickly and stop pulling long before they break.</p></div>
+      <div class="step"><span class="step-num">3</span><p><strong>Carry spares everywhere.</strong> They will snap at the worst moment. Running low? Stop by the office — or grab more from the elastics box outside our front door when we're closed.</p></div>
+      <div class="step"><span class="step-num">4</span><p><strong>Never double up</strong> to make up for missed hours. Heavy force doesn't move teeth faster — it can actually "shock" a tooth and stall it.</p></div>
+      <div class="step"><span class="step-num">5</span><p><strong>Right teeth, right pattern.</strong> Your pattern may change as treatment progresses, so always follow your newest card. Not sure? Text us — we'd much rather re-explain than have teeth move the wrong way.</p></div>
+    </div>
+
+    <div class="callout callout-key" style="margin-top:1.25rem"><strong>The honest math:</strong> every month of skipped elastics is a month added to your treatment. The effort you make equals the result you get.</div>
+
+    <p class="body-text">Sore teeth for the first few days is normal — and it settles fastest with <em>consistent</em> wear. On-again, off-again wear keeps teeth sore and barely moves them. Hooking them on feels fiddly at first; by day three you'll do it without a mirror.</p>
+
+    <div class="callout callout-info"><strong>Your personal pattern</strong> — which teeth, which strength, when to wear them — is on the elastics card we gave you (and can text you). Photos of the common patterns are coming to this page soon; your card is always the final word.</div>
+  </div>
+  </section>
+
+  <!-- BRUSHING & FLOSSING -->
+  <section class="section collapsible collapsed" id="brushing">
+    <div class="section-label">Five minutes a day</div>
+    <h2>🪥 Brushing &amp; flossing with braces</h2>
+    <div class="section-body">
+    <p class="section-desc">Braces give plaque new places to hide. Five extra minutes a day is the entire difference between a beautiful result and permanent white marks.</p>
+
+    <div class="hl-steps">
+      <div class="hl-step"><span class="hl-step-icon">🪥</span><div><strong>Brush after every meal and snack</strong> — minimum three times a day, two minutes each. Angle the bristles at 45° to clean above and below every bracket. Plaque's favourite hiding spot is <strong>between the bracket and the gums</strong> — give it extra attention. We like the Philips Sonicare with a small or orthodontic head, but a soft manual brush works well too.</div></div>
+      <div class="hl-step"><span class="hl-step-icon">🧵</span><div><strong>Floss with a helper:</strong> a floss threader or Superfloss (any drugstore) guides floss under the wire — then hug each tooth in a "C" and clean gently below the gumline. Snagged on a bracket? Don't tug; work it free gently.</div></div>
+      <div class="hl-step"><span class="hl-step-icon">🌲</span><div><strong>The skinny brush (Proxabrush)</strong> from your kit handles the tight spots under wires and around appliances. Keep one in your school bag. A Waterpik isn't required, but it's a great bonus — especially for flushing food from under expanders.</div></div>
+    </div>
+
+    <div class="callout callout-key"><strong>Your insurance policy:</strong> a fluoride mouthwash every night before bed, after brushing and flossing — then nothing to eat or drink for 15 minutes. It's your best protection against permanent white marks.</div>
+
+    <p class="body-text"><strong>Fixed appliances too:</strong> brush carefully around all bands, wires, and metal parts. For anything on the roof of the mouth, run the Proxabrush between the appliance and the palate, then finish with a vigorous swish — details in <a href="#cleanfixed">Fixed appliances</a>.</p>
+  </div>
+  </section>
+
+  
+  <!-- CLEANING REMOVABLE -->
+  <section class="section collapsible collapsed" id="cleanremovable">
+    <div class="section-label">One routine for all of them</div>
+    <h2>🫧 Cleaning retainers &amp; aligners</h2>
+    <div class="section-body">
+    <p class="section-desc">Hawleys, clear retainers, aligners, Twin Blocks, mouthguards — same care, three speeds.</p>
+
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><p><strong>Every time it comes out:</strong> rinse it under cool water.</p></div>
+      <div class="step"><span class="step-num">2</span><p><strong>Once a day:</strong> brush it gently with a soft toothbrush, cool water, and a drop of mild dish soap. <strong>Skip the toothpaste</strong> — it's abrasive, and over time it scratches and clouds the plastic (those tiny scratches are where germs like to live).</p></div>
+      <div class="step"><span class="step-num">3</span><p><strong>Once or twice a week:</strong> a deep clean, with either of the two picks below.</p></div>
+    </div>
+
+    <h3>Our deep-clean picks</h3>
+    <div class="pick-grid">
+      <div class="pick-card pick">
+        <span class="pick-badge">Top pick</span>
+        <div class="pick-name">Retainer Brite tablets</div>
+        <div class="pick-meta">Available at our office</div>
+        <p>Drop a tablet in <strong>warm (never hot)</strong> water, soak 15–20 minutes, rinse well. Fresh, sparkling, done.</p>
+      </div>
+      <div class="pick-card pick">
+        <span class="pick-badge">Top pick</span>
+        <div class="pick-name">Zima ultrasonic cleaner</div>
+        <div class="pick-meta">Available at our office</div>
+        <p>A tiny sonic bath that shakes the grime loose. <strong>A tablet <em>in</em> the ultrasonic is the spa treatment.</strong></p>
+      </div>
+    </div>
+
+    <h3>Never do these</h3>
+    <div class="avoid-grid">
+      <div class="avoid-item">Hot or boiling water</div>
+      <div class="avoid-item">The dishwasher</div>
+      <div class="avoid-item">Toothpaste on the plastic</div>
+      <div class="avoid-item">Denture cleaner soaks</div>
+      <div class="avoid-item">Mouthwash soaks</div>
+      <div class="avoid-item">Bleach or alcohol</div>
+      <div class="avoid-item">Napkin "storage"</div>
+      <div class="avoid-item">Pockets &amp; dashboards</div>
+      <div class="avoid-item">Anywhere a dog can reach</div>
+    </div>
+
+    <div class="callout callout-warn" style="margin-top:1rem"><strong>Heat warps plastic</strong> — one hot-water rinse or an afternoon on a dashboard and it won't fit anymore. When it's out of your mouth, it lives <strong>in its case</strong>.</div>
+
+    <p class="quip">Dogs find retainers irresistible. In the dog-vs-retainer matchup, the dog is undefeated.</p>
+  </div>
+  </section>
+
+  <!-- FIXED APPLIANCES CLEANING -->
+  <section class="section collapsible collapsed" id="cleanfixed">
+    <div class="section-label">The glued-in crowd</div>
+    <h2>🔧 Cleaning fixed appliances</h2>
+    <div class="section-body">
+    <p class="section-desc">Expanders, Nance, space maintainers, cribs, Forsus, bite correctors, bonded wires.</p>
+
+    <div class="ministeps">
+      <div class="ministep"><span class="ministep-num">1</span><span>Brush carefully around all the <strong>bands, wires, and metal parts</strong> every time you brush your teeth.</span></div>
+      <div class="ministep"><span class="ministep-num">2</span><span>Roof-of-mouth appliances: run the <strong>Proxabrush between the appliance and the palate</strong>, then finish with a vigorous swish of water or fluoride rinse. A Waterpik makes this easy.</span></div>
+      <div class="ministep"><span class="ministep-num">3</span><span><strong>Bonded retainer wire:</strong> floss under it daily with a threader or Superfloss — gently.</span></div>
+    </div>
+  </div>
+  </section>
+
+  
+<!-- SOMETHING'S BOTHERING ME -->
+  <section class="section collapsible collapsed" id="help">
+    <div class="section-label">The fix-it school</div>
+    <h2>🆘 Something's bothering me</h2>
+    <div class="section-body">
+    <p class="section-desc">Tap your problem. Almost everything on this list has a calm answer — and most of it you can handle at home tonight.</p>
+
+    <div class="tab-group">
+      <div class="tabs">
+        <button class="tab active" data-panel="p-wire">🌵 Poking wire</button>
+        <button class="tab" data-panel="p-bracket">🧩 Loose bracket</button>
+        <button class="tab" data-panel="p-appliance">🔩 Loose appliance</button>
+        <button class="tab" data-panel="p-sore">😖 Sore teeth</button>
+        <button class="tab" data-panel="p-cheek">👄 Cheek sores</button>
+        <button class="tab" data-panel="p-separator">🍩 Separator fell out</button>
+        <button class="tab" data-panel="p-aligner">🫥 Aligner trouble</button>
+        <button class="tab" data-panel="p-retainer">🌙 Retainer trouble</button>
+        <button class="tab" data-panel="p-elastic">🪢 Elastics trouble</button>
+        <button class="tab" data-panel="p-expander">🗝️ Expander won't turn</button>
+        <button class="tab" data-panel="p-swallow">😮 Swallowed a piece</button>
+      </div>
+
+      <div class="tab-panel active" id="p-wire">
+        <div class="panel-inner">
+          <span class="pill pill-calm">Fixable at home</span>
+          <p>Wires shift as your teeth move — annoying, but almost never urgent.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span><strong>Dry the area</strong>, roll a piece of ortho wax into a ball, and press it over the poking end. Sugar-free gum works in a pinch.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span>If a flexible wire slid to one side, <strong>nudge it back to centre</strong>, or tuck the poking end away with a clean pencil eraser.</span></div>
+            <div class="ministep"><span class="ministep-num">3</span><span><strong>Very last resort:</strong> a clean nail clipper can snip a poking wire end — but text us first if you can.</span></div>
+          </div>
+          <div class="callout-inline">Still poking, or causing a sore? Text us a photo and we'll book you in.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="p-bracket">
+        <div class="panel-inner">
+          <span class="pill pill-normal">Tell us soon</span>
+          <p>Don't panic — this happens, and it's not an emergency.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span>The bracket usually <strong>stays on the wire</strong>. Leave it, or cover it with wax if it bothers you.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span>If it comes off completely, <strong>save it</strong> and bring it to your next visit.</span></div>
+            <div class="ministep"><span class="ministep-num">3</span><span><strong>Text us</strong> so we can decide: fix it right away, or fold the repair into your next appointment.</span></div>
+          </div>
+          <div class="callout-inline">Please don't quietly wait for your next visit — an unreported broken bracket can add about 6 weeks to treatment.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="p-appliance">
+        <div class="panel-inner">
+          <span class="pill pill-normal">Tell us soon</span>
+          <p>Expanders, Nance, space maintainers, cribs, bite correctors, Casper — if any of them feels loose, it isn't doing its job and can irritate your cheek or gums.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span><strong>Text us a photo.</strong> We want to see you soon, but it can wait for regular office hours.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span>Skip sticky and chewy foods in the meantime — they're usually what loosened it in the first place.</span></div>
+          </div>
+          <div class="callout-inline">Forsus came apart? It looks more dramatic than it is. Text us a photo and avoid opening extra-wide until it's sorted.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="p-sore">
+        <div class="panel-inner">
+          <span class="pill pill-calm">Normal — it settles</span>
+          <p>Soreness after new braces, an adjustment, new elastics, a new aligner, or separators is completely normal. It means your teeth are moving, and it settles in a few days.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span>Stick to <strong>softer foods</strong> for a day or two.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span>If you need it, take <strong>the pain reliever you'd normally use for a headache</strong>, following the package directions.</span></div>
+            <div class="ministep"><span class="ministep-num">3</span><span>A <strong>warm salt-water rinse</strong> soothes tender gums.</span></div>
+          </div>
+          <div class="callout-inline">Getting worse after 4–5 days, or one very painful spot? That's worth a text.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="p-cheek">
+        <div class="panel-inner">
+          <span class="pill pill-calm">Fixable at home</span>
+          <p>Your cheeks toughen up within a couple of weeks of anything new in your mouth.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span><strong>Dry the offending spot</strong> and cover it with wax. Reapply as needed — it's safe if you swallow a bit.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span>Rinse with <strong>warm salt water for about 20 seconds</strong> before bed to help small sores heal.</span></div>
+          </div>
+          <div class="callout-inline">A sore that's getting bigger or not improving? Text us a photo.</div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="p-separator">
+        <div class="panel-inner">
+          <span class="pill pill-calm">Quick text</span>
+          <p><strong>Text or call us and tell us which one fell out.</strong> Sometimes it needs replacing before your next appointment, sometimes it's fine — we'll tell you which.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="p-aligner">
+        <div class="panel-inner">
+          <span class="pill pill-normal">Tell us soon</span>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span><strong>Attachment popped off?</strong> Not an emergency. Keep wearing your aligners as normal and text us so we can plan to replace it.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span><strong>Lost or cracked a tray?</strong> Move <strong>ahead to your next aligner</strong> and text us — we'll usually have you wear that one a little longer to make up the difference.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="p-retainer">
+        <div class="panel-inner">
+          <span class="pill pill-urgent">Don't wait</span>
+          <p>Teeth can shift surprisingly fast without a retainer.</p>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span>Lost, broken, or not fitting right? <strong>Text or call us right away</strong> and we'll get you in.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span>Bonded (glued-in) wire came loose or off? <strong>Save the wire</strong>, bring it with you, and get in touch promptly.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="p-elastic">
+        <div class="panel-inner">
+          <span class="pill pill-calm">Easy fix</span>
+          <div class="ministeps">
+            <div class="ministep"><span class="ministep-num">1</span><span><strong>Running low?</strong> Stop by the office and we'll top you up — if we're closed, check the elastics box outside our front door.</span></div>
+            <div class="ministep"><span class="ministep-num">2</span><span><strong>Hook broke, or can't get them on?</strong> Text us. Not an emergency, but we want to fix it fast so treatment doesn't stall.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="p-expander">
+        <div class="panel-inner">
+          <span class="pill pill-normal">Stop and text</span>
+          <p><strong>Stop turning</strong> and call or text us — don't force it, and don't turn it back. We'll sort it out quickly.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="p-swallow">
+        <div class="panel-inner">
+          <span class="pill pill-normal">Usually harmless</span>
+          <p>It happens rarely, and it almost always passes harmlessly. Text us and we'll replace the missing piece.</p>
+          <div class="callout-inline">If there is any coughing or trouble breathing, treat it as a medical emergency and get help immediately.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-warn" style="margin-top:1.5rem"><strong>A real emergency?</strong> For an injury to your face, mouth, or teeth · swelling or signs of infection · severe pain your usual pain reliever can't touch — go to your dentist or the nearest emergency room first, then let us know. We're always glad to help coordinate afterward.</div>
+    <h3>📸 Texting us a photo — how to take one we can actually use</h3>
+    <p class="body-text">A good photo often saves you a trip — we can tell a lot from thirty seconds of looking.</p>
+    <div class="flow">
+      <span class="flow-step done">Spot the problem</span><span class="flow-arrow">→</span>
+      <span class="flow-step highlight">Photo in good light</span><span class="flow-arrow">→</span>
+      <span class="flow-step">Text 1-888-844-9093</span><span class="flow-arrow">→</span>
+      <span class="flow-step">We reply with a plan</span>
+    </div>
+
+    <div class="steps">
+      <div class="step"><span class="step-num gradient">1</span><p><strong>Find bright light</strong> — a window is perfect — and have someone help if you can.</p></div>
+      <div class="step"><span class="step-num gradient">2</span><p><strong>Pull your cheek away</strong> from the problem area with a clean finger or the handle of a spoon.</p></div>
+      <div class="step"><span class="step-num gradient">3</span><p><strong>Get close, then tap to focus.</strong> A sharp photo from a little further away beats a blurry close-up.</p></div>
+      <div class="step"><span class="step-num gradient">4</span><p><strong>Send 1–2 photos to 1-888-844-9093</strong> with your name and a few words about what's going on.</p></div>
+    </div>
+
+    <div class="callout callout-note" style="margin-top:1rem">We reply within <strong>1–2 business days</strong> — usually much sooner.</div>
+
+  </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="resources" id="contact">
+    <h2>📞 Contact us</h2>
+    <p class="sub">One text line for problems, one office for everything else.</p>
+
+    <div class="resource-group">
+      <h3>Reach us</h3>
+      <div class="resource-links">
+        <div class="resource-item"><a href="sms:+18888449093">Text us (with a photo): 1-888-844-9093</a></div>
+        <div class="resource-item"><a href="tel:+14032464414">Call: 403-246-4414</a></div>
+        <div class="resource-item"><a href="mailto:contact@bigskyortho.ca">Email: contact@bigskyortho.ca</a></div>
+      </div>
+    </div>
+
+    <div class="resource-group">
+      <h3>Visit &amp; online</h3>
+      <div class="resource-links">
+        <div class="resource-item"><a href="https://maps.google.com/?q=1851+Sirocco+Dr+SW+%23351+Calgary+AB">1851 Sirocco Dr SW #351, Calgary</a></div>
+        <div class="resource-item"><a href="https://bigskyortho.ca">bigskyortho.ca</a></div>
+        <div class="resource-item"><a href="https://paymenthub.greyfinch.com">Pay online: paymenthub.greyfinch.com</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TLDR -->
+  <section class="tldr" id="tldr">
+    <h2>TLDR</h2>
+    <p class="tldr-sub">For when you have no time and less patience.</p>
+    <ol class="tldr-steps">
+      <li class="tldr-step"><span class="tldr-num">1</span><span><strong>Wear your elastics</strong> — 24 hours, changed 3–4× a day. Every skipped month adds a month.</span></li>
+      <li class="tldr-step"><span class="tldr-num">2</span><span><strong>Nothing hard, nothing sticky.</strong> Slice apples, cut corn off the cob, skip the popcorn. Each broken bracket adds ~6 weeks.</span></li>
+      <li class="tldr-step"><span class="tldr-num">3</span><span><strong>Brush after every meal, floss nightly, fluoride rinse before bed.</strong> Five minutes a day prevents permanent white marks.</span></li>
+      <li class="tldr-step"><span class="tldr-num">4</span><span><strong>Aligners: 22 hours a day</strong> — and lost a tray? Move ahead to the next one and text us.</span></li>
+      <li class="tldr-step"><span class="tldr-num">5</span><span><strong>Clean removable appliances with soap, not toothpaste</strong> — cool water always, Retainer Brite or Zima weekly, never heat.</span></li>
+      <li class="tldr-step"><span class="tldr-num">6</span><span><strong>Retainer out of your mouth = in its case.</strong> Not a napkin. Not a pocket. Nowhere near the dog.</span></li>
+      <li class="tldr-step"><span class="tldr-num">7</span><span><strong>Sore teeth for a few days is normal.</strong> Soft foods, your usual pain reliever, salt-water rinses.</span></li>
+      <li class="tldr-step"><span class="tldr-num">8</span><span><strong>Anything else: text a photo to 1-888-844-9093.</strong> Reply within 1–2 business days. Real emergencies → dentist or ER first.</span></li>
+    </ol>
+  </section>
+
+  <!-- OUTRO -->
+  <section class="outro">
+    <p><strong>You're part of the Big Sky family now.</strong> Every question on this page is one we've been asked a hundred times — so never feel silly texting us. We'd always rather hear from you early.</p>
+    <p>— Dr. Van Sant &amp; the Big Sky Ortho team</p>
+  </section>
+
+</main>
+
+<script>
+// Tab groups: every .tabs container controls the .tab-panel siblings in its parent.
+document.querySelectorAll('.tabs').forEach(function(group){
+  group.addEventListener('click', function(e){
+    var btn = e.target.closest('.tab');
+    if(!btn) return;
+    var wrap = group.parentElement;
+    group.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+    wrap.querySelectorAll(':scope > .tab-panel').forEach(function(p){ p.classList.remove('active'); });
+    btn.classList.add('active');
+    var panel = wrap.querySelector(':scope > #' + btn.dataset.panel);
+    if(panel) panel.classList.add('active');
+  });
+});
+
+// Collapsible sections: tap the heading to open/close.
+document.querySelectorAll('.section.collapsible > h2').forEach(function(h){
+  h.addEventListener('click', function(){
+    h.parentElement.classList.toggle('collapsed');
+  });
+});
+
+// Any in-page link (jump nav, cross-references) auto-expands its target section.
+function expandTarget(hash){
+  if(!hash) return;
+  var el = document.querySelector(hash);
+  if(el && el.classList.contains('collapsible')) el.classList.remove('collapsed');
+}
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(){ expandTarget(a.getAttribute('href')); });
+});
+expandTarget(window.location.hash);
+</script>
+</body>
+</html>
