@@ -1029,16 +1029,55 @@ document.querySelectorAll('.section.collapsible > h2').forEach(function(h){
   });
 });
 
-// Any in-page link (jump nav, cross-references) auto-expands its target section.
-function expandTarget(hash){
-  if(!hash) return;
-  var el = document.querySelector(hash);
-  if(el && el.classList.contains('collapsible')) el.classList.remove('collapsed');
+// Friendly link names → the tab panel they open.
+// e.g. guide.bigskyortho.ca/#hyrax opens My Appliance on the Expander tab.
+var ALIASES = {
+  // appliances
+  braces:'a-braces', aligners:'a-invis', invisalign:'a-invis', clearaligners:'a-invis',
+  expander:'a-hyrax', hyrax:'a-hyrax', twinblock:'a-twinblock', headgear:'a-headgear',
+  forsus:'a-forsus', powerbar:'a-powerbar', casper:'a-casper', biteramps:'a-ramps',
+  nance:'a-nance', spacemaintainer:'a-spacer', crib:'a-crib', separators:'a-seps',
+  retainers:'a-retainer', retainer:'a-retainer', bondedwire:'a-bonded', mouthguard:'a-mouthguard',
+  // troubleshooting
+  pokingwire:'p-wire', loosebracket:'p-bracket', looseappliance:'p-appliance',
+  soreteeth:'p-sore', cheeksores:'p-cheek', separatorout:'p-separator',
+  alignertrouble:'p-aligner', retainertrouble:'p-retainer', elasticstrouble:'p-elastic',
+  expanderstuck:'p-expander', swallowed:'p-swallow'
+};
+
+function openTarget(raw){
+  if(!raw) return;
+  var key = raw.replace(/^#/,'').toLowerCase();
+  var panelId = ALIASES[key] || key;
+  var panel = document.getElementById(panelId);
+
+  // a tab panel: expand its section, switch to its tab, scroll there
+  if(panel && panel.classList.contains('tab-panel')){
+    var group = panel.parentElement;
+    var section = panel.closest('.section');
+    if(section) section.classList.remove('collapsed');
+    group.querySelectorAll(':scope > .tab-panel').forEach(function(p){ p.classList.remove('active'); });
+    group.querySelectorAll('.tab').forEach(function(t){
+      t.classList.toggle('active', t.dataset.panel === panelId);
+    });
+    panel.classList.add('active');
+    if(section) setTimeout(function(){ section.scrollIntoView({behavior:'smooth', block:'start'}); }, 60);
+    return;
+  }
+
+  // a section: just expand it
+  var el = document.getElementById(key);
+  if(el && el.classList.contains('collapsible')){
+    el.classList.remove('collapsed');
+    setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); }, 60);
+  }
 }
+
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click', function(){ expandTarget(a.getAttribute('href')); });
+  a.addEventListener('click', function(){ openTarget(a.getAttribute('href')); });
 });
-expandTarget(window.location.hash);
+window.addEventListener('hashchange', function(){ openTarget(window.location.hash); });
+openTarget(window.location.hash);
 </script>
 </body>
 </html>
