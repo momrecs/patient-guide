@@ -16,23 +16,26 @@
    Do not change these values. They are the identity of the look.
    ============================================================ */
 :root{
-  --cream:#fef4f0;
-  --warm-white:#fff8f5;
-  --ink:#2d2320;
-  --ink-light:#6b5c57;
-  --ink-muted:#a08c86;
+  /* Big Sky brand palette — role names kept from the guide template.
+     electric #0303fa · cloudy #f1e8f1 · bright #b2d9f0 · gray #f5f4f4
+     soft #bdc7f0 · sun #e8f77e · purple #a8b3ef                        */
+  --cream:#eaf4fb;
+  --warm-white:#ffffff;
+  --ink:#0d0d14;
+  --ink-light:#3a4a55;
+  --ink-muted:#6b7c88;
 
-  --sage:#7dab7f;      --sage-light:#dff2e1;   --sage-dark:#2e6e34;
-  --blush:#f0a99a;     --blush-light:#fde6e2;  --blush-dark:#c04535;
-  --butter:#f9c74f;    --butter-light:#fef4cc; --butter-dark:#7a5500;
-  --peach:#f4845f;     --peach-light:#feeae2;  --peach-dark:#b84520;
-  --lilac:#c9a8e8;     --lilac-light:#f0e8fc;  --lilac-dark:#6030a0;
-  --rose:#e9768a;      --rose-light:#fde0e6;   --rose-dark:#9a1f35;
-  --sky:#79bdd4;       --sky-light:#dff1f9;    --sky-dark:#1d6480;
-  --mint:#6ecfb5;      --mint-light:#dcf7f0;   --mint-dark:#1a7a60;
+  --sage:#7cbde2;      --sage-light:#dff0fa;   --sage-dark:#10506f;   /* bright sky — normal / do   */
+  --blush:#c79ec0;     --blush-light:#f7ecf5;  --blush-dark:#7a2b64;  /* cloudy sky — don't / avoid */
+  --butter:#c3d94a;    --butter-light:#e8f77e; --butter-dark:#3f4a00; /* sun yellow — the key rule  */
+  --peach:#d3b8cf;     --peach-light:#f9f2f8;  --peach-dark:#7a3b68;  /* cloudy sky — caveat        */
+  --lilac:#7d8ce3;     --lilac-light:#e2e6fb;  --lilac-dark:#33409e;  /* purple sky — context       */
+  --rose:#0303fa;      --rose-light:#e0e5ff;   --rose-dark:#0303fa;   /* electric sky — accent      */
+  --sky:#8e9ce4;       --sky-light:#e6eafc;    --sky-dark:#2b3a9e;    /* soft sky — info            */
+  --mint:#c3d94a;      --mint-light:#f4fcd0;   --mint-dark:#4d5a00;   /* sun yellow — tip           */
 
-  --border:#f0e0d8;
-  --border-strong:#d9c4bb;
+  --border:#cfe4f2;
+  --border-strong:#9fc9e4;
   --radius:14px;
   --radius-sm:9px;
 }
@@ -51,15 +54,15 @@ a:hover{color:var(--sage-dark);text-decoration-color:var(--sage-dark)}
 
 /* ---------- HERO ---------- */
 .hero{
-  background:linear-gradient(135deg,#fce8e0 0%,#fde8d0 35%,#f8e0ee 70%,#e8e0f8 100%);
+  background:linear-gradient(135deg,#d3eaf8 0%,#bdc7f0 34%,#a8b3ef 62%,#f1e8f1 100%);
   color:var(--ink);padding:4rem 2rem 3rem;text-align:center;position:relative;overflow:hidden;
 }
 .hero::before{
   content:'';position:absolute;inset:0;
   background-image:
-    radial-gradient(circle at 10% 60%,rgba(201,168,232,.3) 0%,transparent 55%),
-    radial-gradient(circle at 90% 15%,rgba(249,199,79,.2) 0%,transparent 50%),
-    radial-gradient(circle at 55% 95%,rgba(240,169,154,.25) 0%,transparent 45%);
+    radial-gradient(circle at 10% 60%,rgba(168,179,239,.45) 0%,transparent 55%),
+    radial-gradient(circle at 90% 15%,rgba(232,247,126,.45) 0%,transparent 50%),
+    radial-gradient(circle at 55% 95%,rgba(178,217,240,.5) 0%,transparent 45%);
 }
 .hero-emoji{font-size:52px;margin-bottom:1rem;display:block;position:relative}
 .hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;line-height:1.15;margin-bottom:1rem;position:relative}
@@ -233,7 +236,7 @@ a:hover{color:var(--sage-dark);text-decoration-color:var(--sage-dark)}
 .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
 .tab{padding:6px 16px;border-radius:999px;font-size:13px;border:1px solid var(--border-strong);background:transparent;color:var(--ink-light);cursor:pointer;font-family:'Nunito Sans',sans-serif;font-weight:500;transition:all .15s}
 .tab:hover{background:var(--warm-white);color:var(--ink)}
-.tab.active{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.tab.active{background:#0303fa;color:#fff;border-color:#0303fa}
 .tabs-alt .tab{font-weight:600;padding:6px 18px}
 .tabs-alt .tab:hover{background:var(--sage-light);color:var(--sage-dark);border-color:var(--sage)}
 .tabs-alt .tab.active{background:var(--sage-dark);color:#fff;border-color:var(--sage-dark)}
@@ -249,8 +252,8 @@ a:hover{color:var(--sage-dark);text-decoration-color:var(--sage-dark)}
 .steps{display:flex;flex-direction:column;gap:12px}
 .step{display:flex;gap:14px;align-items:flex-start;background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:1rem}
 .step-num{width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--cream);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}
-.step-num.gradient{background:linear-gradient(135deg,var(--sage) 0%,var(--mint) 100%);color:#fff;font-weight:700;font-size:12px}
-.step-num.gradient-alt{background:linear-gradient(135deg,var(--lilac) 0%,var(--rose) 100%);color:#fff;font-weight:700;font-size:12px}
+.step-num.gradient{background:linear-gradient(135deg,#0303fa 0%,#8e9ce4 100%);color:#fff;font-weight:700;font-size:12px}
+.step-num.gradient-alt{background:linear-gradient(135deg,#a8b3ef 0%,#0303fa 100%);color:#fff;font-weight:700;font-size:12px}
 .step p{font-size:13px;line-height:1.6;padding-top:4px}
 .step strong{font-weight:600}
 
@@ -307,7 +310,7 @@ a:hover{color:var(--sage-dark);text-decoration-color:var(--sage-dark)}
 .resource-item a::before{content:'→';font-size:12px;color:var(--sage);flex-shrink:0}
 
 /* ---------- OUTRO ---------- */
-.outro{background:linear-gradient(135deg,#fce8e0 0%,#f8e0ee 50%,#e8e8f8 100%);border-radius:var(--radius);padding:2rem;margin-top:2rem;text-align:center}
+.outro{background:linear-gradient(135deg,#d3eaf8 0%,#e2e6fb 50%,#f1e8f1 100%);border-radius:var(--radius);padding:2rem;margin-top:2rem;text-align:center}
 .outro p{font-size:14px;color:var(--ink-light);line-height:1.7;max-width:520px;margin:0 auto}
 .outro p+p{margin-top:.75rem}
 .outro p strong{color:var(--ink)}
