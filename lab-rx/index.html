@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab Rx Builder — Big Sky Orthodontics (staff)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="https://static.showit.com/file/5uu_2Tzn5RnoO0ycaiIKpA/282438/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#eaf4fb; --warm-white:#ffffff; --ink:#0d0d14; --ink-light:#3a4a55; --ink-muted:#6b7c88;
+  --sage:#7cbde2;   --sage-light:#dff0fa;   --sage-dark:#10506f;
+  --blush:#c79ec0;  --blush-light:#f7ecf5;  --blush-dark:#7a2b64;
+  --butter:#c3d94a; --butter-light:#e8f77e; --butter-dark:#3f4a00;
+  --peach:#d3b8cf;  --peach-light:#f9f2f8;  --peach-dark:#7a3b68;
+  --lilac:#7d8ce3;  --lilac-light:#e2e6fb;  --lilac-dark:#33409e;
+  --rose:#0303fa;   --rose-light:#e0e5ff;   --rose-dark:#0303fa;
+  --sky:#8e9ce4;    --sky-light:#e6eafc;    --sky-dark:#2b3a9e;
+  --mint:#c3d94a;   --mint-light:#f4fcd0;   --mint-dark:#4d5a00;
+  --border:#cfe4f2; --border-strong:#9fc9e4; --radius:14px; --radius-sm:9px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;font-size:15px;padding:24px 16px 60px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:700;line-height:1.15;margin-bottom:.25rem}
+h1 em{font-style:italic;color:var(--rose-dark)}
+.sub{color:var(--ink-light);font-size:14px;margin-bottom:1.5rem;font-style:italic}
+.panel{background:var(--warm-white);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.25rem;margin-bottom:1rem}
+.panel h2{font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:.15rem}
+.panel .hint{font-size:12.5px;color:var(--ink-muted);margin-bottom:.85rem}
+.label{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:.35rem;display:block}
+input[type=text],input[type=date],select,textarea{width:100%;font-family:'Nunito Sans',sans-serif;font-size:14px;color:var(--ink);background:#fff;border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:8px 11px}
+input[type=text]:focus,input[type=date]:focus,select:focus,textarea:focus{outline:2px solid var(--sky);outline-offset:1px}
+textarea{resize:vertical;min-height:60px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:.85rem}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:.85rem}
+.btn{font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:600;border-radius:999px;padding:7px 16px;border:1px solid var(--border-strong);background:#fff;color:var(--ink);cursor:pointer;transition:all .15s}
+.btn:hover{background:var(--cream)}
+.btn.primary{background:#0303fa;color:#fff;border-color:#0303fa}
+.btn.primary:hover{background:#0202d0;border-color:#0202d0}
+.btn.mini{font-size:11px;padding:3px 10px}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.check{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;user-select:none}
+.check input[type=checkbox]{width:16px;height:16px;accent-color:#0303fa}
+.radio-group{display:flex;flex-direction:column;gap:6px}
+.radio-opt{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:500;cursor:pointer;user-select:none;padding:6px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:#fff;transition:all .12s}
+.radio-opt:hover{background:var(--sky-light)}
+.radio-opt.selected{background:var(--rose-light);border-color:#0303fa}
+.radio-opt input[type=radio]{width:16px;height:16px;accent-color:#0303fa}
+
+/* type toggle */
+.type-toggle{display:flex;gap:0;border:2px solid #0303fa;border-radius:999px;overflow:hidden;margin-bottom:.85rem}
+.type-btn{flex:1;text-align:center;padding:9px 14px;font-family:'Nunito Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;border:none;background:#fff;color:#0303fa;transition:all .15s}
+.type-btn.active{background:#0303fa;color:#fff}
+.type-btn:first-child{border-right:1px solid #0303fa}
+
+/* tooth diagram */
+.chart{width:100%;height:auto;display:block;touch-action:manipulation}
+.tooth{fill:#fff;stroke:var(--border-strong);stroke-width:1.5;cursor:pointer;transition:fill .12s}
+.tooth:hover{fill:var(--sky-light)}
+.tooth.selected{fill:#dfe4ff;stroke:#0303fa;stroke-width:2.5}
+.tnum{font-size:9px;fill:var(--ink-muted);text-anchor:middle;pointer-events:none;font-family:'Nunito Sans',sans-serif}
+.archlab{font-size:10px;font-weight:700;letter-spacing:.1em;fill:var(--ink-muted);font-family:'Nunito Sans',sans-serif}
+.sidelab{font-size:9.5px;font-weight:700;letter-spacing:.08em;fill:var(--ink-muted);text-anchor:middle;font-family:'Nunito Sans',sans-serif}
+.primary-label{font-size:8px;fill:var(--lilac-dark);text-anchor:middle;pointer-events:none;font-family:'Nunito Sans',sans-serif;font-weight:700}
+
+/* color swatches */
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px;margin-bottom:.75rem}
+.swatch{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 6px;border:2px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all .12s;background:#fff}
+.swatch:hover{border-color:var(--sky);background:var(--sky-light)}
+.swatch.selected{border-color:#0303fa;background:var(--rose-light);box-shadow:0 0 0 2px rgba(3,3,250,.18)}
+.swatch-circle{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+.swatch-name{font-size:10.5px;font-weight:700;color:var(--ink);text-align:center;line-height:1.2}
+.swatch-code{font-size:9px;color:var(--ink-muted)}
+
+/* sparkle swatches */
+.sparkle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-bottom:.75rem}
+.sparkle{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 6px;border:2px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all .12s;background:#fff}
+.sparkle:hover{border-color:var(--sky);background:var(--sky-light)}
+.sparkle.selected{border-color:#0303fa;background:var(--rose-light);box-shadow:0 0 0 2px rgba(3,3,250,.18)}
+.sparkle-circle{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.12);position:relative;overflow:hidden}
+.sparkle-name{font-size:10.5px;font-weight:700;color:var(--ink);text-align:center;line-height:1.2}
+
+/* conditional sections */
+.sub-section{padding:12px 14px;background:var(--cream);border-radius:var(--radius-sm);margin-top:.65rem;border:1px solid var(--border)}
+.sub-section .sub-title{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:.5rem}
+
+/* card */
+.card{background:#fff;border:2px solid #0303fa;border-radius:var(--radius);padding:1.25rem 1.4rem;margin-top:.5rem}
+.card-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:2px solid #0303fa;padding-bottom:.6rem;margin-bottom:.9rem}
+.card-title{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:700}
+.card-title em{font-style:italic;color:#0303fa}
+.card-meta{font-size:12px;color:var(--ink-light);text-align:right}
+.card-meta strong{color:var(--ink);font-size:14px;display:block}
+.rx{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:.9rem 0}
+.rx-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:.9rem 0}
+.rxbox{background:var(--butter-light);border:1.5px solid var(--butter);border-radius:var(--radius-sm);padding:8px 12px}
+.rxbox .k{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--butter-dark)}
+.rxbox .v{font-size:14.5px;font-weight:700;color:var(--ink)}
+.rxbox .spec{font-size:11.5px;font-weight:600;color:var(--butter-dark)}
+.rxbox-full{grid-column:1/-1}
+.card-note{background:var(--sky-light);border:1px solid var(--sky);border-radius:var(--radius-sm);padding:7px 11px;font-size:12px;color:var(--sky-dark);margin-top:.7rem;font-weight:600}
+.card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--border);margin-top:.9rem;padding-top:.6rem;font-size:11.5px;color:var(--ink-light);flex-wrap:wrap}
+.card-foot strong{color:var(--ink)}
+.warn{background:var(--blush-light);border:1.5px solid var(--blush);color:var(--blush-dark);border-radius:var(--radius-sm);padding:8px 12px;font-size:12.5px;font-weight:600;margin-top:.6rem}
+
+.hidden{display:none!important}
+
+@media (max-width:600px){ .row,.row-3,.rx,.rx-3,.swatch-grid,.sparkle-grid{grid-template-columns:1fr 1fr} body{padding:16px 10px 50px} .type-toggle{flex-direction:column;border-radius:var(--radius)} .type-btn{border-right:none!important} .type-btn:first-child{border-bottom:1px solid #0303fa} }
+@media (max-width:380px){ .swatch-grid,.sparkle-grid{grid-template-columns:1fr 1fr} }
+@media print{
+  body{background:#fff;padding:0}
+  .builder,.toolbar,h1,.sub{display:none!important}
+  .card{border:1.5px solid #333;margin:0;page-break-inside:avoid}
+  @page{size:Letter;margin:.5in}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Lab <em>Rx</em> Builder</h1>
+  <p class="sub">Staff tool — fill in the prescription, then print or screenshot the card to submit. Nothing typed here is saved or sent anywhere.</p>
+
+  <div class="builder">
+
+    <!-- 1. Patient -->
+    <div class="panel">
+      <h2><span class="step-num">1</span>. Patient</h2>
+      <p class="hint">Patient name and due date for the lab.</p>
+      <div class="row">
+        <div><span class="label">First name</span><input type="text" id="pfirst" placeholder="e.g. Ava"></div>
+        <div><span class="label">Last name</span><input type="text" id="plast" placeholder="e.g. Martinez"></div>
+      </div>
+      <div class="row">
+        <div><span class="label">Due date</span><input type="date" id="duedate"></div>
+        <div><span class="label">Impression</span><input type="text" id="impression" value="Digital, from Alliedstar"></div>
+      </div>
+    </div>
+
+    <!-- 2. Appliance type -->
+    <div class="panel">
+      <h2><span class="step-num">2</span>. Appliance type</h2>
+      <p class="hint">Choose which appliance you're prescribing.</p>
+      <div class="type-toggle">
+        <button class="type-btn active" data-type="expander">3D SLS Expander</button>
+        <button class="type-btn" data-type="lingual-arch">3D SLS Lingual Arch</button>
+      </div>
+    </div>
+
+    <!-- 3. Band placement -->
+    <div class="panel">
+      <h2><span class="step-num">3</span>. Band placement</h2>
+      <p class="hint">Tap the teeth where 3D bands will be placed. Diagram shows the maxillary arch as you face the patient.</p>
+      <label class="check" style="margin-bottom:.7rem"><input type="checkbox" id="mirror-bands" checked> Mirror to both sides</label>
+      <svg class="chart" id="bandChart" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="btnrow" style="margin-top:.5rem">
+        <button class="btn mini" id="clearBands">Clear all bands</button>
+      </div>
+    </div>
+
+    <!-- 4. Design options (expander only) -->
+    <div class="panel" id="designPanel">
+      <h2><span class="step-num" id="designStep">4</span>. Design options</h2>
+      <p class="hint">Configure acrylic, lingual wing, and face mask hooks.</p>
+
+      <!-- Acrylic -->
+      <label class="check" style="margin-bottom:.6rem"><input type="checkbox" id="acrylicYes"> Acrylic on palate</label>
+      <div id="acrylicOptions" class="sub-section hidden">
+        <div class="sub-title">Acrylic colour</div>
+        <div class="swatch-grid" id="colorGrid"></div>
+        <div class="sub-title">Sparkle</div>
+        <div class="sparkle-grid" id="sparkleGrid"></div>
+      </div>
+
+      <!-- Lingual wing -->
+      <label class="check" style="margin:.8rem 0 .6rem"><input type="checkbox" id="wingYes"> Lingual wing</label>
+      <div id="wingOptions" class="sub-section hidden">
+        <div class="sub-title">Wing ending teeth</div>
+        <p class="hint" style="margin-bottom:.5rem">Tap the teeth where the lingual wing should end.</p>
+        <label class="check" style="margin-bottom:.7rem"><input type="checkbox" id="mirror-wing" checked> Mirror to both sides</label>
+        <svg class="chart" id="wingChart" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="btnrow" style="margin-top:.5rem">
+          <button class="btn mini" id="clearWing">Clear wing teeth</button>
+        </div>
+      </div>
+
+      <!-- Face mask hooks -->
+      <label class="check" style="margin-top:.8rem"><input type="checkbox" id="facemaskYes"> Add laser-welded face mask hooks (RPH)</label>
+    </div>
+
+    <!-- 5. Buccal tubes -->
+    <div class="panel">
+      <h2><span class="step-num" id="buccalStep">5</span>. Buccal tubes</h2>
+      <p class="hint">Select one buccal tube option.</p>
+      <div class="radio-group" id="buccalGroup">
+        <label class="radio-opt selected"><input type="radio" name="buccal" value="Buccal bumps" checked> Buccal bumps</label>
+        <label class="radio-opt"><input type="radio" name="buccal" value=".022 buccal tube with archwire slot and hook"> .022 buccal tube with archwire slot and hook</label>
+        <label class="radio-opt"><input type="radio" name="buccal" value=".022 buccal tube with headgear tube"> .022 buccal tube with headgear tube</label>
+      </div>
+    </div>
+
+    <!-- 6. Extra instructions -->
+    <div class="panel">
+      <h2><span class="step-num" id="extraStep">6</span>. Extra instructions</h2>
+      <p class="hint">Any additional design notes for the lab.</p>
+      <textarea id="extraNotes" rows="3" placeholder="e.g. Please extend acrylic anteriorly to cover lateral incisors..."></textarea>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar btnrow" style="margin-bottom:1.25rem">
+      <button class="btn primary" onclick="window.print()">🖨️ Print Rx</button>
+      <button class="btn" id="pngBtn" style="display:none">💾 Save as image</button>
+      <span style="font-size:12px;color:var(--ink-muted)">On a phone, just screenshot the card below.</span>
+    </div>
+
+  </div>
+
+  <!-- THE CARD -->
+  <div class="card" id="card">
+    <div class="card-head">
+      <div class="card-title">Lab <em>Prescription</em></div>
+      <div class="card-meta"><strong id="cName">&nbsp;</strong><span id="cDate"></span></div>
+    </div>
+
+    <div class="rx">
+      <div class="rxbox"><div class="k">Appliance</div><div class="v" id="cType">3D SLS Expander</div></div>
+      <div class="rxbox"><div class="k">Impression</div><div class="v" id="cImpression">Digital, from Alliedstar</div></div>
+    </div>
+
+    <div class="rxbox" style="margin-bottom:.9rem"><div class="k">3D Bands on</div><div class="v" id="cBands">—</div></div>
+
+    <svg class="chart" id="cardBandChart" xmlns="http://www.w3.org/2000/svg"></svg>
+
+    <!-- Expander-only fields on card -->
+    <div id="cardExpanderSection">
+      <div class="rx" id="cardAcrylicRow" style="display:none">
+        <div class="rxbox"><div class="k">Acrylic colour</div><div class="v" id="cColor">—</div></div>
+        <div class="rxbox"><div class="k">Sparkle</div><div class="v" id="cSparkle">—</div></div>
+      </div>
+      <div class="rxbox" id="cardWingRow" style="margin-bottom:.6rem;display:none"><div class="k">Lingual wing ending</div><div class="v" id="cWing">—</div></div>
+      <div id="cardFacemaskRow" class="rxbox" style="display:none;margin-bottom:.6rem"><div class="k">Face mask hooks</div><div class="v">Yes — laser-welded RPH</div></div>
+    </div>
+
+    <div class="rxbox" style="margin-bottom:.6rem"><div class="k">Buccal tubes</div><div class="v" id="cBuccal">Buccal bumps</div></div>
+
+    <div id="cNoteWrap"></div>
+
+    <div class="card-foot">
+      <div><strong>Big Sky Orthodontics</strong> · 403-246-4414</div>
+      <div id="cDateFoot"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+/* ============================================================
+   ACRYLIC COLORS & SPARKLES
+   ============================================================ */
+const COLORS = [
+  {code:'A', name:'Clear',        hex:'#f0e8d0'},
+  {code:'B', name:'Trans Pink',   hex:'#dba0aa'},
+  {code:'C', name:'Pink',         hex:'#d44878'},
+  {code:'D', name:'Red',          hex:'#cc2222'},
+  {code:'E', name:'Purple',       hex:'#6b2d82'},
+  {code:'F', name:'Magenta',      hex:'#9a1838'},
+  {code:'G', name:'Orange',       hex:'#e87020'},
+  {code:'H', name:'Flour Yellow', hex:'#d8d828'},
+  {code:'I', name:'Green',        hex:'#22a822'},
+  {code:'L', name:'Turquoise',    hex:'#20a8a8'},
+  {code:'M', name:'Blue',         hex:'#2040c8'},
+  {code:'N', name:'Black',        hex:'#1a1a1a'},
+  {code:'O', name:'Gold',         hex:'#a8a040'}
+];
+const SPARKLES = [
+  {name:'None',           hex:null},
+  {name:'Gold',           hex:'#c8a832', sparkle:true},
+  {name:'Silver Sparkle', hex:'#c0c0c0', sparkle:true},
+  {name:'Blue Sparkle',   hex:'#4488cc', sparkle:true},
+  {name:'Ocean Mist',     hex:'#78b8b8', sparkle:true},
+  {name:'Mother of Pearl',hex:'#e8dcd0', sparkle:true}
+];
+
+/* ============================================================
+   MAXILLARY TOOTH MODEL
+   FDI permanent: Q1 (upper right) 11-17, Q2 (upper left) 21-27
+   Palmer primary: A-E mapped to FDI 51-55 (upper right), 61-65 (upper left)
+   ============================================================ */
+// Permanent teeth: right to left as facing patient
+const PERM_TEETH = [17,16,15,14,13,12,11, 21,22,23,24,25,26,27];
+// Primary teeth: right to left as facing patient
+const PRIM_TEETH = [55,54,53,52,51, 61,62,63,64,65];
+
+const PALMER_LETTER = {1:'A',2:'B',3:'C',4:'D',5:'E'};
+const PERM_NAME = {1:'Central',2:'Lateral',3:'Canine',4:'1st Premolar',5:'2nd Premolar',6:'1st Molar',7:'2nd Molar'};
+const PRIM_NAME = {1:'Central A',2:'Lateral B',3:'Canine C',4:'1st Molar D',5:'2nd Molar E'};
+
+const quad = n => Math.floor(n/10);
+const pos = n => n%10;
+const isPrimary = n => quad(n) === 5 || quad(n) === 6;
+const isRight = n => quad(n) === 1 || quad(n) === 5;
+
+function toothLabel(n) {
+  if (isPrimary(n)) return PALMER_LETTER[pos(n)];
+  return String(n);
+}
+function toothFullName(n) {
+  if (isPrimary(n)) {
+    const side = isRight(n) ? 'R' : 'L';
+    return side + ' ' + PALMER_LETTER[pos(n)] + ' (' + n + ')';
+  }
+  const side = isRight(n) ? 'R' : 'L';
+  return side + ' ' + PERM_NAME[pos(n)] + ' (' + n + ')';
+}
+function toothShortName(n) {
+  if (isPrimary(n)) {
+    const side = isRight(n) ? 'R' : 'L';
+    return PALMER_LETTER[pos(n)] + '(' + side + ')';
+  }
+  return String(n);
+}
+
+// Mirror: Q1↔Q2, Q5↔Q6
+const MIRROR_Q = {1:2, 2:1, 5:6, 6:5};
+function mirrorOf(n) {
+  const mq = MIRROR_Q[quad(n)];
+  return mq ? mq * 10 + pos(n) : n;
+}
+
+/* ============================================================
+   TOOTH GEOMETRY — maxillary arch only
+   Permanent row on top, primary row below
+   ============================================================ */
+const PAD_L = 30, PAD_R = 20, GAP = 3, TOOTH_H = 36;
+const PERM_Y = 28;
+const PRIM_Y = 94;
+
+// Tooth widths
+const PERM_W = {7:30, 6:32, 5:22, 4:22, 3:21, 2:19, 1:24};
+const PRIM_W = {5:28, 4:26, 3:20, 2:18, 1:22};
+
+// Compute x centers for permanent teeth
+const PERM_CX = {};
+(function() {
+  let x = PAD_L;
+  PERM_TEETH.forEach((n, i) => {
+    const w = PERM_W[pos(n)];
+    PERM_CX[n] = x + w / 2;
+    x += w + GAP;
+  });
+})();
+const CHART_W_MAX = (() => { let x = PAD_L; PERM_TEETH.forEach(n => x += PERM_W[pos(n)] + GAP); return x - GAP + PAD_R; })();
+
+// Compute x centers for primary teeth — centered under arch
+const PRIM_CX = {};
+(function() {
+  // primary teeth span from under the central to under the 2nd premolar area
+  // We'll center them under the corresponding permanent teeth zone
+  // Map primary positions: E(5)→near 6, D(4)→near 5/4, C(3)→near 3, B(2)→near 2, A(1)→near 1
+  const permToAlign = {5:6, 4:5, 3:3, 2:2, 1:1}; // primary pos → perm pos to align near
+  PRIM_TEETH.forEach(n => {
+    const alignPerm = quad(n) <= 5 ? (isRight(n) ? 1 : 2) * 10 + permToAlign[pos(n)]
+                                    : (isRight(n) ? 1 : 2) * 10 + permToAlign[pos(n)];
+    // Actually let's just compute: right primary teeth align under right perm, left under left
+    const pq = isRight(n) ? 1 : 2;
+    const alignN = pq * 10 + permToAlign[pos(n)];
+    PRIM_CX[n] = PERM_CX[alignN];
+  });
+})();
+
+const CHART_H = PRIM_Y + TOOTH_H + 20;
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let applianceType = 'expander'; // 'expander' or 'lingual-arch'
+let bandTeeth = [];      // selected band teeth (FDI numbers)
+let wingTeeth = [];      // selected wing ending teeth
+let selectedColor = null;  // color code letter
+let selectedSparkle = 'None';
+
+/* ============================================================
+   DRAWING
+   ============================================================ */
+function drawMaxillaryArch(svgEl, selectedSet, interactive) {
+  let s = '';
+  s += `<text class="sidelab" style="text-anchor:start" x="${PAD_L}" y="12">◀ PATIENT'S RIGHT</text>`;
+  s += `<text class="sidelab" style="text-anchor:end" x="${CHART_W_MAX - PAD_R}" y="12">PATIENT'S LEFT ▶</text>`;
+
+  // Permanent teeth label
+  s += `<text class="archlab" x="2" y="${PERM_Y + TOOTH_H/2 + 4}">PERM</text>`;
+
+  // Permanent teeth
+  PERM_TEETH.forEach(n => {
+    const w = PERM_W[pos(n)];
+    const cx = PERM_CX[n];
+    const isSel = selectedSet.has(n);
+    const cls = 'tooth' + (isSel ? ' selected' : '');
+    const r = pos(n) >= 6 ? 5 : 8;
+    s += `<rect class="${cls}" data-t="${n}" x="${cx - w/2}" y="${PERM_Y}" width="${w}" height="${TOOTH_H}" rx="${r}"${interactive ? '' : ' style="cursor:default;pointer-events:none"'}/>`;
+    s += `<text class="tnum" x="${cx}" y="${PERM_Y - 4}">${n}</text>`;
+  });
+
+  // Primary teeth label
+  s += `<text class="archlab" x="2" y="${PRIM_Y + TOOTH_H/2 + 4}">PRIM</text>`;
+
+  // Primary teeth
+  PRIM_TEETH.forEach(n => {
+    const w = PRIM_W[pos(n)];
+    const cx = PRIM_CX[n];
+    const isSel = selectedSet.has(n);
+    const cls = 'tooth' + (isSel ? ' selected' : '');
+    s += `<rect class="${cls}" data-t="${n}" x="${cx - w/2}" y="${PRIM_Y}" width="${w}" height="${TOOTH_H}" rx="7"${interactive ? '' : ' style="cursor:default;pointer-events:none"'}/>`;
+    s += `<text class="tnum" x="${cx}" y="${PRIM_Y + TOOTH_H + 12}">${n}</text>`;
+    s += `<text class="primary-label" x="${cx}" y="${PRIM_Y + TOOTH_H/2 + 4}">${PALMER_LETTER[pos(n)]}</text>`;
+  });
+
+  svgEl.setAttribute('viewBox', `0 0 ${CHART_W_MAX} ${CHART_H}`);
+  svgEl.innerHTML = s;
+}
+
+/* ============================================================
+   BUILD COLOR / SPARKLE GRIDS
+   ============================================================ */
+function buildColorGrid() {
+  const grid = document.getElementById('colorGrid');
+  grid.innerHTML = '';
+  COLORS.forEach(c => {
+    const el = document.createElement('div');
+    el.className = 'swatch' + (selectedColor === c.code ? ' selected' : '');
+    el.innerHTML = `<div class="swatch-circle" style="background:${c.hex}"></div><div class="swatch-name">${c.name}</div><div class="swatch-code">${c.code}</div>`;
+    el.onclick = () => { selectedColor = c.code; buildColorGrid(); render(); };
+    grid.appendChild(el);
+  });
+}
+
+function buildSparkleGrid() {
+  const grid = document.getElementById('sparkleGrid');
+  grid.innerHTML = '';
+  SPARKLES.forEach(sp => {
+    const el = document.createElement('div');
+    el.className = 'sparkle' + (selectedSparkle === sp.name ? ' selected' : '');
+    let circleStyle = '';
+    if (!sp.hex) {
+      circleStyle = 'background:#f5f5f5;';
+    } else if (sp.sparkle) {
+      circleStyle = `background:${sp.hex};`;
+    } else {
+      circleStyle = `background:${sp.hex};`;
+    }
+    el.innerHTML = `<div class="sparkle-circle" style="${circleStyle}"></div><div class="sparkle-name">${sp.name}</div>`;
+    el.onclick = () => { selectedSparkle = sp.name; buildSparkleGrid(); render(); };
+    grid.appendChild(el);
+  });
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function render() {
+  const isExpander = applianceType === 'expander';
+
+  // Update step numbers
+  const designPanel = document.getElementById('designPanel');
+  const buccalStep = document.getElementById('buccalStep');
+  const extraStep = document.getElementById('extraStep');
+
+  if (isExpander) {
+    designPanel.classList.remove('hidden');
+    document.getElementById('designStep').textContent = '4';
+    buccalStep.textContent = '5';
+    extraStep.textContent = '6';
+  } else {
+    designPanel.classList.add('hidden');
+    buccalStep.textContent = '4';
+    extraStep.textContent = '5';
+  }
+
+  // Type toggle buttons
+  document.querySelectorAll('.type-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.type === applianceType);
+  });
+
+  // Draw band chart (builder)
+  drawMaxillaryArch(document.getElementById('bandChart'), new Set(bandTeeth), true);
+  // Draw card band chart
+  drawMaxillaryArch(document.getElementById('cardBandChart'), new Set(bandTeeth), false);
+
+  // Wing chart
+  if (isExpander && document.getElementById('wingYes').checked) {
+    drawMaxillaryArch(document.getElementById('wingChart'), new Set(wingTeeth), true);
+  }
+
+  // Acrylic show/hide
+  const acrylicChecked = document.getElementById('acrylicYes').checked;
+  document.getElementById('acrylicOptions').classList.toggle('hidden', !acrylicChecked);
+
+  // Wing show/hide
+  const wingChecked = document.getElementById('wingYes').checked;
+  document.getElementById('wingOptions').classList.toggle('hidden', !wingChecked);
+
+  // ---- Update card ----
+  const firstName = document.getElementById('pfirst').value.trim();
+  const lastName = document.getElementById('plast').value.trim();
+  const fullName = [firstName, lastName].filter(Boolean).join(' ');
+  document.getElementById('cName').textContent = fullName || ' ';
+
+  const dueDate = document.getElementById('duedate').value;
+  const dateStr = dueDate ? new Date(dueDate + 'T12:00:00').toLocaleDateString('en-CA', {year:'numeric', month:'long', day:'numeric'}) : '';
+  document.getElementById('cDate').textContent = dateStr ? 'Due: ' + dateStr : '';
+  document.getElementById('cDateFoot').textContent = 'Prepared: ' + todayStr();
+
+  document.getElementById('cType').textContent = isExpander ? '3D SLS Expander' : '3D SLS Lingual Arch';
+  document.getElementById('cImpression').textContent = document.getElementById('impression').value || '—';
+
+  // Bands
+  const bandNames = bandTeeth.map(toothShortName);
+  document.getElementById('cBands').textContent = bandTeeth.length ? bandNames.join(', ') : '—';
+
+  // Expander-only card fields
+  const expanderSection = document.getElementById('cardExpanderSection');
+  expanderSection.style.display = isExpander ? '' : 'none';
+
+  if (isExpander) {
+    // Acrylic
+    const acrylicRow = document.getElementById('cardAcrylicRow');
+    if (acrylicChecked) {
+      acrylicRow.style.display = '';
+      const colorObj = COLORS.find(c => c.code === selectedColor);
+      document.getElementById('cColor').textContent = colorObj ? colorObj.name + ' (' + colorObj.code + ')' : '—';
+      document.getElementById('cSparkle').textContent = selectedSparkle || 'None';
+    } else {
+      acrylicRow.style.display = 'none';
+    }
+
+    // Wing
+    const wingRow = document.getElementById('cardWingRow');
+    if (wingChecked && wingTeeth.length) {
+      wingRow.style.display = '';
+      document.getElementById('cWing').textContent = wingTeeth.map(toothShortName).join(', ');
+    } else {
+      wingRow.style.display = 'none';
+    }
+
+    // Facemask
+    const fmRow = document.getElementById('cardFacemaskRow');
+    fmRow.style.display = document.getElementById('facemaskYes').checked ? '' : 'none';
+  }
+
+  // Buccal
+  const buccalVal = document.querySelector('input[name="buccal"]:checked');
+  document.getElementById('cBuccal').textContent = buccalVal ? buccalVal.value : '—';
+
+  // Extra notes
+  const extra = document.getElementById('extraNotes').value.trim();
+  document.getElementById('cNoteWrap').innerHTML = extra
+    ? `<div class="card-note">${extra.replace(/[<>]/g, '')}</div>`
+    : '';
+}
+
+function todayStr() {
+  return new Date().toLocaleDateString('en-CA', {year:'numeric', month:'long', day:'numeric'});
+}
+
+/* ============================================================
+   INTERACTIONS
+   ============================================================ */
+
+// Appliance type toggle
+document.querySelectorAll('.type-btn').forEach(btn => {
+  btn.onclick = () => {
+    applianceType = btn.dataset.type;
+    render();
+  };
+});
+
+// Band tooth selection
+document.getElementById('bandChart').addEventListener('click', e => {
+  const t = e.target.closest('.tooth');
+  if (!t) return;
+  const n = +t.dataset.t;
+  toggleTooth(n, bandTeeth, document.getElementById('mirror-bands').checked);
+  render();
+});
+
+// Wing tooth selection
+document.getElementById('wingChart').addEventListener('click', e => {
+  const t = e.target.closest('.tooth');
+  if (!t) return;
+  const n = +t.dataset.t;
+  toggleTooth(n, wingTeeth, document.getElementById('mirror-wing').checked);
+  render();
+});
+
+function toggleTooth(n, arr, mirror) {
+  const idx = arr.indexOf(n);
+  if (idx >= 0) {
+    arr.splice(idx, 1);
+    if (mirror) {
+      const m = mirrorOf(n);
+      const mi = arr.indexOf(m);
+      if (mi >= 0) arr.splice(mi, 1);
+    }
+  } else {
+    arr.push(n);
+    if (mirror) {
+      const m = mirrorOf(n);
+      if (!arr.includes(m)) arr.push(m);
+    }
+  }
+}
+
+// Clear buttons
+document.getElementById('clearBands').onclick = () => { bandTeeth.length = 0; render(); };
+document.getElementById('clearWing').onclick = () => { wingTeeth.length = 0; render(); };
+
+// Checkboxes
+document.getElementById('acrylicYes').addEventListener('change', render);
+document.getElementById('wingYes').addEventListener('change', render);
+document.getElementById('facemaskYes').addEventListener('change', render);
+
+// Buccal radio group
+document.querySelectorAll('#buccalGroup .radio-opt').forEach(opt => {
+  const radio = opt.querySelector('input[type=radio]');
+  radio.addEventListener('change', () => {
+    document.querySelectorAll('#buccalGroup .radio-opt').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+    render();
+  });
+});
+
+// Text inputs
+['pfirst','plast','impression','extraNotes'].forEach(id => {
+  document.getElementById(id).addEventListener('input', render);
+});
+document.getElementById('duedate').addEventListener('change', render);
+
+/* ============================================================
+   BUILD GRIDS & INITIAL RENDER
+   ============================================================ */
+// Set due date minimum to 10 business days from today
+function addBusinessDays(start, days) {
+  const d = new Date(start);
+  let added = 0;
+  while (added < days) {
+    d.setDate(d.getDate() + 1);
+    const dow = d.getDay();
+    if (dow !== 0 && dow !== 6) added++;
+  }
+  return d;
+}
+const minDue = addBusinessDays(new Date(), 10);
+const minStr = minDue.toISOString().split('T')[0];
+document.getElementById('duedate').setAttribute('min', minStr);
+document.getElementById('duedate').value = minStr;
+
+buildColorGrid();
+buildSparkleGrid();
+render();
+
+/* ============================================================
+   SAVE AS IMAGE
+   ============================================================ */
+window.addEventListener('load', () => {
+  if (typeof html2canvas === 'function') {
+    const btn = document.getElementById('pngBtn');
+    btn.style.display = 'inline-block';
+    btn.onclick = () => {
+      html2canvas(document.getElementById('card'), {scale: 2, backgroundColor: '#ffffff'}).then(c => {
+        const a = document.createElement('a');
+        const who = (document.getElementById('pfirst').value + '-' + document.getElementById('plast').value).replace(/[^a-z0-9]+/gi, '-').toLowerCase().replace(/^-|-$/g, '') || 'patient';
+        a.download = `lab-rx-${who}.png`;
+        a.href = c.toDataURL('image/png');
+        a.click();
+      });
+    };
+  }
+});
+</script>
+</body>
+</html>
